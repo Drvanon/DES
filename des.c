@@ -1,4 +1,5 @@
 #include "des.h"
+#include "int.h"
 
 #ifndef ENTITY_POOL_SIZE
 #define ENTITY_POOL_SIZE 100
@@ -10,7 +11,8 @@
 int lastGUID = 0;
 int lastComponentID = 0;
 
-typedef struct entity_pools {
+typedef struct
+entity_pools {
     int guid[ENTITY_POOL_SIZE];
     void* component[ENTITY_POOL_SIZE];
     int component_data_id[ENTITY_POOL_SIZE];
@@ -18,7 +20,8 @@ typedef struct entity_pools {
 
 entity_pool ENTITY_POOL;
 
-int find_empty_row() {
+int
+find_empty_row() {
     int idx = 0;
     while (ENTITY_POOL.guid[idx] && !(idx >= ENTITY_POOL_SIZE)) {
         idx++;
@@ -31,7 +34,8 @@ int find_empty_row() {
     return idx;
 }
 
-int createEntity() {
+int
+createEntity() {
     int idx = find_empty_row();
     if (idx == -1) {
         return -1;
@@ -43,12 +47,13 @@ int createEntity() {
     return lastGUID;
 }
 
-int add_component_to_entity_ID (int guid, void* component) {
+int
+add_component_to_entity_ID (int guid, void* component, long long[] mask) {
     int idx = find_empty_row();
 
-    add_component_to_entity_IDX(idx, guid, component);
+    int data_idx = add_component_to_entity_IDX(idx, guid, component, mask);
 
-    return idx;
+    return data_idx;
 }
 
 /* It is very possible that the user will be aware of the row
@@ -56,21 +61,30 @@ int add_component_to_entity_ID (int guid, void* component) {
    add_component_to_entity_ID, but works based of index instead
    of id, which is much faster, for we will not have to go
    trough the entire entity pool. */
-void add_component_to_entity_IDX (int idx, int guid, void* component) {
+void
+add_component_to_entity_IDX (int idx, int guid, void* component, long long[] mask) {
     ENTITY_POOL.guid[idx] = guid;
     ENTITY_POOL.component[idx] = component;
+
+    for (int i=0;i)
+    ffsll();
+
+    return data_idx;
 }
 
-int remove_component_from_entity (int idx) {
+int
+remove_component_from_entity (int idx) {
     // Sanity check
     if (idx >= ENTITY_POOL_SIZE) {
         return -1;
     }
+
     ENTITY_POOL.guid[idx] = 0;
     return 0;
 }
 
-void remove_entity(int guid) {
+void
+remove_entity (int guid) {
     int idx = 0;
     while (idx <= ENTITY_POOL_SIZE) {
         if (ENTITY_POOL.guid[idx] == guid) {
@@ -80,7 +94,8 @@ void remove_entity(int guid) {
     }
 }
 
-void get_entity_components(int guid, void* components[ENTITY_COMPONENT_LIMIT]) {
+void
+get_entity_components (int guid, void* components[ENTITY_COMPONENT_LIMIT]) {
     int idx = 0;
     int component_idx = 0;
     while (idx <= ENTITY_POOL_SIZE) {
