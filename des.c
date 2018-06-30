@@ -31,7 +31,7 @@ int find_empty_row() {
     return idx;
 }
 
-int create_new_entity_row() {
+int createEntity() {
     int idx = find_empty_row();
     if (idx == -1) {
         return -1;
@@ -40,7 +40,7 @@ int create_new_entity_row() {
     lastGUID++;
     ENTITY_POOL.guid[idx] = lastGUID;
 
-    return idx;
+    return lastGUID;
 }
 
 int add_component_to_entity_ID (int guid, void* component) {

@@ -9,7 +9,7 @@ int lastGUID;
 int lastComponentID;
 
 int find_empty_row();
-int create_new_entity_row();
+int createEntity();
 int add_component_to_entity_ID(int guid, void* component);
 void add_component_to_entity_IDX (int idx, int guid, void* component);
 int remove_component_from_entity(int idx);
