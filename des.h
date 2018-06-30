@@ -7,11 +7,10 @@
 
 int lastGUID;
 int lastComponentID;
-
 int find_empty_row();
 int createEntity();
-int add_component_to_entity_ID(int guid, void* component);
-void add_component_to_entity_IDX (int idx, int guid, void* component);
-int remove_component_from_entity(int idx);
-void remove_entity(int guid);
-void get_entity_components(int guid, void* components[ENTITY_COMPONENT_LIMIT]);
+int add_component_to_entity_ID (int guid, void* component);
+int add_component_to_entity_IDX (int idx, int guid, void* component);
+int remove_component_from_entity (int idx);
+void remove_entity (int guid);
+void get_entity_components (int guid, void* components[ENTITY_COMPONENT_LIMIT]);

@@ -34,7 +34,7 @@ register_assemblage_component (int assemblage_id, void* component) {
     }
 
     ASSEMBLAGE_POOL.assemblage_id[idx] = assemblage_id;
-    ASSEMBLAGE_POOL.compontents[idx] = component;
+    ASSEMBLAGE_POOL.component[idx] = component;
 
     return idx;
 }
@@ -47,14 +47,16 @@ remove_assemblage_component(int assemblage_id, void* component) {
     }
 
     ASSEMBLAGE_POOL.assemblage_id[idx] = 0;
+    return 0;
 }
 
 int
 create_entity_from_assemblage (int assemblage_id) {
     int guid = createEntity();
     for (int idx=0;idx<ASSEMBLAGE_POOL_SIZE;idx++) {
-        if (assemblage_id == ASSEMBLAGE_POOL[idx]) {
+        if (assemblage_id == ASSEMBLAGE_POOL.assemblage_id[idx]) {
             add_component_to_entity_ID(guid, ASSEMBLAGE_POOL.component[idx]);
         }
     }
+    return 0;
 }

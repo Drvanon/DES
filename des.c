@@ -1,3 +1,4 @@
+#include <string.h>
 #include "des.h"
 #include "int.h"
 
@@ -48,10 +49,10 @@ createEntity() {
 }
 
 int
-add_component_to_entity_ID (int guid, void* component, long long[] mask) {
+add_component_to_entity_ID (int guid, void* component) {
     int idx = find_empty_row();
 
-    int data_idx = add_component_to_entity_IDX(idx, guid, component, mask);
+    int data_idx = add_component_to_entity_IDX(idx, guid, component);
 
     return data_idx;
 }
@@ -61,15 +62,14 @@ add_component_to_entity_ID (int guid, void* component, long long[] mask) {
    add_component_to_entity_ID, but works based of index instead
    of id, which is much faster, for we will not have to go
    trough the entire entity pool. */
-void
-add_component_to_entity_IDX (int idx, int guid, void* component, long long[] mask) {
+int
+add_component_to_entity_IDX (int idx, int guid, void* component) {
     ENTITY_POOL.guid[idx] = guid;
     ENTITY_POOL.component[idx] = component;
 
-    for (int i=0;i)
-    ffsll();
+    // ffsll(component->mask);
 
-    return data_idx;
+    return 0;
 }
 
 int
