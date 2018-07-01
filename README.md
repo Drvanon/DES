@@ -4,4 +4,5 @@ This is a minimalistic entity component system created by Robin A. Dorstijn, bas
 ## TODOS
 - Make all ECS tables (structs) dynamic memory
 - Remove globals and starting passing around variables.
-- Add SQL compatibility 
+- Add SQL compatibility
+- Rename components (to something with pools)and metaComponents
