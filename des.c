@@ -1,179 +1,181 @@
 #include <string.h>
 #include <stdlib.h>
-#include "des.h"
-#include "int.h"
 
-#ifndef ENTITY_POOL_SIZE
-#define ENTITY_POOL_SIZE 100
-#endif
-#ifndef ENTITY_COMPONENT_LIMIT
-#define ENTITY_COMPONENT_LIMIT 50
-#endif
+#include "des.h"
 
 int lastGUID = 0;
-int lastComponentID = 0;
 
 typedef struct
-entity_pools {
+EntityPool 
+{
     int guid[ENTITY_POOL_SIZE];
-    metaComponent *component[ENTITY_POOL_SIZE];
+    MetaComponentPool *component_pool[ENTITY_POOL_SIZE];
     int component_data_id[ENTITY_POOL_SIZE];
-} entity_pool;
+} EntityPool;
 
-entity_pool ENTITY_POOL;
+EntityPool ENTITY_POOL;
 
 int
-find_empty_row () {
-    int idx = 0;
-    while (ENTITY_POOL.guid[idx] && !(idx >= ENTITY_POOL_SIZE)) {
-        idx++;
+entity_pool_find_empty_row() 
+{
+    int index = 0;
+    while (ENTITY_POOL.guid[index] && !(index >= ENTITY_POOL_SIZE)) {
+        index++;
     }
 
-    if (idx >= ENTITY_POOL_SIZE) {
+    if (index >= ENTITY_POOL_SIZE) {
         return -1;
     }
 
-    return idx;
+    return index;
 }
 
 int
-createEntity () {
-    int idx = find_empty_row();
-    if (idx == -1) {
+entity_create() 
+{
+    int index = entity_pool_find_empty_row();
+    if (index == -1) {
         return -1;
     }
 
     lastGUID++;
-    ENTITY_POOL.guid[idx] = lastGUID;
+    ENTITY_POOL.guid[index] = lastGUID;
 
     return lastGUID;
 }
 
 int
-add_component_to_entity_ID (int guid, metaComponent *metComp) {
-    int idx = find_empty_row();
+add_component_to_entity_ID(int guid, MetaComponentPool *meta_component_pool) 
+{
+    int index = entity_pool_find_empty_row();
+    int component_index = add_component_to_entity_IDX(index, guid, meta_component_pool);
 
-    int data_idx = add_component_to_entity_IDX(idx, guid, metComp);
-
-    return data_idx;
+    return component_index;
 }
 
-/* It is very possible that the user will be aware of the row
-   that the entity was created in, so this is a copy of
-   add_component_to_entity_ID, but works based of index instead
-   of id, which is much faster, for we will not have to go
-   trough the entire entity pool. */
 int
-add_component_to_entity_IDX (int idx, int guid, metaComponent* metComp) {
-    ENTITY_POOL.guid[idx] = guid;
-    ENTITY_POOL.component[idx] = metComp;
+component_add_to_entity_index(int index, int guid, MetaComponentPool* meta_component_pool)
+{
+    ENTITY_POOL.guid[index] = guid;
+    ENTITY_POOL.component_pool[index] = meta_component_pool;
 
-    int data_idx = get_open_slot_in_component(metComp);
-    if (data_idx > -1) {
-        set_slot_in_component(metComp, data_idx, 1);
+    int component_index = get_open_slot_in_component(meta_component_pool);
+    if (component_index > -1) {
+        set_slot_in_component(meta_component_pool, component_index, 1);
     }
 
-    return data_idx;
-}
-
-int
-remove_entity_component_index (int idx) {
-    set_slot_in_component(ENTITY_POOL.component[idx], ENTITY_POOL.component_data_id[idx], 0);
-
-    ENTITY_POOL.guid[idx] = 0;
-    ENTITY_POOL.component[idx] = NULL;
-    ENTITY_POOL.component_data_id[idx] = 0;
-    return 0;
-}
-
-int
-remove_component_from_entity (int guid, metaComponent *metComp) {
-    int idx = 0;
-    while (!(guid == ENTITY_POOL.guid[idx]) | !(ENTITY_POOL.component[idx] == metComp)) {
-        idx++;
-    }
-
-    remove_entity_component_index(idx);
-    return 0;
+    return component_index;
 }
 
 void
-remove_entity (int guid) {
-    int idx = 0;
-    while (idx <= ENTITY_POOL_SIZE) {
-        if (ENTITY_POOL.guid[idx] == guid) {
-            remove_entity_component_index(idx);
+component_remove_from_entity_index(int index) 
+{
+    set_slot_in_component(ENTITY_POOL.component_pool[index], ENTITY_POOL.component_data_id[index], 0);
+
+    ENTITY_POOL.guid[index] = 0;
+    ENTITY_POOL.component_pool[index] = NULL;
+    ENTITY_POOL.component_data_id[index] = 0;
+}
+
+void
+component_remove_from_entity_ID(int guid, MetaComponentPool *meta_component_pool) 
+{
+    int index = 0;
+    while (!(guid == ENTITY_POOL.guid[index]) | !(ENTITY_POOL.component_pool[index] == meta_component_pool)) {
+        index++;
+    }
+
+    remove_entity_component_index(index);
+}
+
+void
+entity_remove(int guid)
+{
+    int index = 0;
+    while (index <= ENTITY_POOL_SIZE) {
+        if (ENTITY_POOL.guid[index] == guid) {
+            remove_entity_component_index(index);
         }
-        idx++;
+
+        index++;
     }
 }
 
 void
-get_entity_components (int guid, metaComponent *components[ENTITY_COMPONENT_LIMIT]) {
-    int idx = 0;
-    int component_idx = 0;
-    while (idx <= ENTITY_POOL_SIZE) {
-        if (ENTITY_POOL.guid[idx] == guid) {
-            components[component_idx] = ENTITY_POOL.component[idx];
-            component_idx++;
+entity_get_components(int guid, MetaComponentPool *component_pool[ENTITY_COMPONENT_LIMIT]) 
+{
+    int index = 0;
+    int component_index = 0;
+    while (index <= ENTITY_POOL_SIZE) {
+        if (ENTITY_POOL.guid[index] == guid) {
+            component_pool[component_index] = ENTITY_POOL.component_pool[index];
+            component_index++;
         }
-        idx++;
+
+        index++;
     }
 }
 
-metaComponent
-register_component (void *component, int size) {
-    metaComponent metComp;
+MetaComponentPool
+component_pool_register(void *component_pool, int size) 
+{
+    MetaComponentPool meta_component_pool;
 
-    metComp.size = size;
-    metComp.mask = malloc(size);
-    metComp.component = component;
+    meta_component_pool.size = size;
+    meta_component_pool.mask = malloc(size);
+    meta_component_pool.component_pool = component_pool;
 
-    return metComp;
+    return meta_component_pool;
 }
 
 int
-get_open_slot_in_component (metaComponent *metComp) {
-    for (int i=0; i<metComp->size/64; i++) {
-        u64 *block = metComp->mask + i;
+component_pool_get_open_slot(MetaComponentPool *meta_component_pool) 
+{
+    for (int i = 0; i < meta_component_pool->size / 64; i++) {
+        u64 *block = meta_component_pool->mask + i;
 
         int free_slot = ffsll(~*block);
 
         if (free_slot > 0) {
-            return i * 64 + free_slot - 1; // Free slot returns a value of 1 if the first bit is "on"
+            // Free slot returns a value of 1 if the first bit is "on"
+            return i * 64 + free_slot - 1;
         }
     }
+    
     return -1;
 }
 
 /* Find the state of a slot in a component */
 int
-get_slot_in_component (metaComponent *metComp, int index) {
-    if (index > metComp->size) {
+component_pool_get_slot(MetaComponentPool *meta_component_pool, int index) 
+{
+    if (index > meta_component_pool->size) {
         return -1;
     }
 
     int block_index = index / 64;
     int offset = index % 64;
-    u64 *block = metComp->mask + block_index;
+    u64 *block = meta_component_pool->mask + block_index;
     int result = *block & 1ULL << offset;
 
     if (result) {
         return 1;
     }
+    
     return 0;
 }
 
 int
-set_slot_in_component (metaComponent *metComp, int index, int state) {
-    if (index > metComp->size) {
+component_pool_set_slot(MetaComponentPool *meta_component_pool, int index, int state) 
+{
+    if (index > meta_component_pool->size) {
         return -1;
     }
 
     int block_index = index / 64;
     int offset = index % 64;
 
-    u64 *block = metComp->mask + block_index;
+    u64 *block = meta_component_pool->mask + block_index;
 
     if (state) {
         *block |= 1ULL << offset;
@@ -183,4 +185,3 @@ set_slot_in_component (metaComponent *metComp, int index, int state) {
 
     return 0;
 }
-
