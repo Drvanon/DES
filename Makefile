@@ -1,7 +1,7 @@
 APP_NAME = des
-CC=clang
-SOURCES = example.c des.c assemblage.c
-LDFLAGS =
+CC=gcc
+SOURCES = example.c des.c system/system_velocity.c # assemblage.c
+LDFLAGS = -Icomponents -Isystems
 
 default:
 	$(CC) $(SOURCES) -o $(APP_NAME) $(LDFLAGS)

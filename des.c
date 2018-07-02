@@ -69,10 +69,10 @@ entity_create()
  * @return int This variable refers to the index of the user defined component pool that can be set to the prefered data, see example above.
  */
 int
-add_component_to_entity_ID(int guid, MetaComponentPool *meta_component_pool) 
+component_add_to_entity_ID(int guid, MetaComponentPool *meta_component_pool) 
 {
     int index = entity_pool_find_empty_row();
-    int component_index = add_component_to_entity_IDX(index, guid, meta_component_pool);
+    int component_index = component_add_to_entity_index(index, guid, meta_component_pool);
 
     return component_index;
 }
@@ -97,9 +97,9 @@ component_add_to_entity_index(int index, int guid, MetaComponentPool* meta_compo
     ENTITY_POOL.guid[index] = guid;
     ENTITY_POOL.component_pool[index] = meta_component_pool;
 
-    int component_index = get_open_slot_in_component(meta_component_pool);
+    int component_index = component_pool_get_open_slot(meta_component_pool);
     if (component_index > -1) {
-        set_slot_in_component(meta_component_pool, component_index, 1);
+        component_pool_set_slot(meta_component_pool, component_index, 1);
     }
 
     return component_index;
@@ -113,7 +113,7 @@ void
 component_remove_from_entity_index(int index) 
 {
     // TODO: Error code: index out of bounds
-    set_slot_in_component(ENTITY_POOL.component_pool[index], ENTITY_POOL.component_data_id[index], 0);
+    component_pool_set_slot(ENTITY_POOL.component_pool[index], ENTITY_POOL.component_data_id[index], 0);
 
     ENTITY_POOL.guid[index] = 0;
     ENTITY_POOL.component_pool[index] = NULL;
@@ -135,7 +135,7 @@ component_remove_from_entity_ID(int guid, MetaComponentPool *meta_component_pool
         index++;
     }
 
-    remove_entity_component_index(index);
+    component_remove_from_entity_index(index);
 }
 
 /* @brief Remove all data on the entity.
@@ -149,7 +149,7 @@ entity_remove(int guid)
     int index = 0;
     while (index <= ENTITY_POOL_SIZE) {
         if (ENTITY_POOL.guid[index] == guid) {
-            remove_entity_component_index(index);
+            component_remove_from_entity_index(index);
         }
 
         index++;
@@ -216,7 +216,7 @@ component_pool_get_open_slot(MetaComponentPool *meta_component_pool)
     for (int i = 0; i < meta_component_pool->size / 64; i++) {
         u64 *block = meta_component_pool->mask + i;
 
-        int free_slot = ffsll(~*block);
+        int free_slot = __builtin_ffsll(~*block);
 
         if (free_slot > 0) {
             // Free slot returns a value of 1 if the first bit is "on"

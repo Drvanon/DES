@@ -1,3 +1,6 @@
+#ifndef COMPONENTS_H
+#define COMPONENTS_H
+
 typedef struct
 PositionComponentPool 
 {
@@ -11,3 +14,5 @@ VelocityComponentPool
     float *x_velocity;
     float *y_velocity;
 } VelocityComponentPool;
+
+#endif // COMPONENTS_H

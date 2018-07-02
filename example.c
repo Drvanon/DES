@@ -3,8 +3,8 @@
 #include <time.h>
 
 #include "des.h"
-#include "components.h"
-#include "system_velocity.h"
+#include "components/components.h"
+#include "system/system_velocity.h"
 
 int
 main() 
@@ -21,9 +21,9 @@ main()
     velocity_component_pool.y_velocity = malloc(256*sizeof(float));
 
     for (int i = 0; i < 50; i++) {
-        int guid = createEntity();
-        int position_index = add_component_to_entity_ID(guid, &position_meta_component);
-        int velocity_index = add_component_to_entity_ID(guid, &velocity_meta_component);
+        int guid = entity_create();
+        int position_index = component_add_to_entity_ID(guid, &position_meta_component);
+        int velocity_index = component_add_to_entity_ID(guid, &velocity_meta_component);
         if (position_index == -1 | velocity_index == -1){
             printf("Got some internal error");
         }
