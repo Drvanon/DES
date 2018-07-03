@@ -1,4 +1,4 @@
-int find_empty_asssemblage_row ();
-int register_assemblage_component (int assemblage_id, void* component);
-int remove_assemblage_component(int assemblage_id, void* component);
-int create_entity_from_assemblage (int assemblage_id);
+int assemblage_row_find_empty();
+int assemblage_register_component (int assemblage_id, void* component);
+int assemblage_remove_component(int assemblage_id, void* component);
+int assemblage_create_entity(int assemblage_id);

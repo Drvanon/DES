@@ -1,6 +1,6 @@
 APP_NAME = des
 CC=gcc
-SOURCES = example.c des.c system/system_velocity.c # assemblage.c
+SOURCES = example.c des.c system/system_velocity.c assemblage.c
 LDFLAGS = -Icomponents -Isystems
 
 default:
