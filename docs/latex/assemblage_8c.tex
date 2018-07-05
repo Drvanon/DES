@@ -1,0 +1,192 @@
+\hypertarget{assemblage_8c}{}\section{assemblage.\+c File Reference}
+\label{assemblage_8c}\index{assemblage.\+c@{assemblage.\+c}}
+{\ttfamily \#include \char`\"{}des.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}assemblage.\+h\char`\"{}}\newline
+Include dependency graph for assemblage.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=234pt]{assemblage_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_assemblage_pool}{Assemblage\+Pool}}
+\begin{DoxyCompactList}\small\item\em Assemblage pool. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{assemblage_8c_a7278dc587e6d944803677e7662c25147}{A\+S\+S\+E\+M\+B\+L\+A\+G\+E\+\_\+\+P\+O\+O\+L\+\_\+\+S\+I\+ZE}}~100
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct_assemblage_pool}{Assemblage\+Pool}} \mbox{\hyperlink{assemblage_8c_a800d18985dee1a39b3e212d06ed10fa8}{Assemblage\+Pool}}
+\begin{DoxyCompactList}\small\item\em Assemblage pool. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{assemblage_8c_aec35c8cc69f98525ae6406f687259673}{assemblage\+\_\+row\+\_\+find\+\_\+empty}} ()
+\begin{DoxyCompactList}\small\item\em Find an empty row in the assemblage table. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{assemblage_8c_afc736eff8f29c778a8ecff259e7608a9}{assemblage\+\_\+create}} ()
+\begin{DoxyCompactList}\small\item\em Create a new assemblage. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{assemblage_8c_a668b0d6cb0ce05fe8b975d1549e18049}{assemblage\+\_\+register\+\_\+component}} (int assemblage\+\_\+id, \mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} $\ast$component)
+\begin{DoxyCompactList}\small\item\em Create a entry in the assemablage table. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{assemblage_8c_a075483752fba32efb629c3bf3df65279}{assemblage\+\_\+remove\+\_\+component}} (int assemblage\+\_\+id, \mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} $\ast$component)
+\begin{DoxyCompactList}\small\item\em Remove a component from an assemblage. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{assemblage_8c_a8824f5dc055fa00237c2ca883a855de7}{assemblage\+\_\+create\+\_\+entity}} (\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$entity\+\_\+pool, int assemblage\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Create a new entity in the provided \mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} from the assemblage that is identified by the assemblage\+\_\+id. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_assemblage_pool}{Assemblage\+Pool}} \mbox{\hyperlink{assemblage_8c_abef5ea0528d8e5d61219208774e36465}{A\+S\+S\+E\+M\+B\+L\+A\+G\+E\+\_\+\+P\+O\+OL}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{assemblage_8c_a7278dc587e6d944803677e7662c25147}\label{assemblage_8c_a7278dc587e6d944803677e7662c25147}} 
+\index{assemblage.\+c@{assemblage.\+c}!A\+S\+S\+E\+M\+B\+L\+A\+G\+E\+\_\+\+P\+O\+O\+L\+\_\+\+S\+I\+ZE@{A\+S\+S\+E\+M\+B\+L\+A\+G\+E\+\_\+\+P\+O\+O\+L\+\_\+\+S\+I\+ZE}}
+\index{A\+S\+S\+E\+M\+B\+L\+A\+G\+E\+\_\+\+P\+O\+O\+L\+\_\+\+S\+I\+ZE@{A\+S\+S\+E\+M\+B\+L\+A\+G\+E\+\_\+\+P\+O\+O\+L\+\_\+\+S\+I\+ZE}!assemblage.\+c@{assemblage.\+c}}
+\subsubsection{\texorpdfstring{A\+S\+S\+E\+M\+B\+L\+A\+G\+E\+\_\+\+P\+O\+O\+L\+\_\+\+S\+I\+ZE}{ASSEMBLAGE\_POOL\_SIZE}}
+{\footnotesize\ttfamily \#define A\+S\+S\+E\+M\+B\+L\+A\+G\+E\+\_\+\+P\+O\+O\+L\+\_\+\+S\+I\+ZE~100}
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{assemblage_8c_a800d18985dee1a39b3e212d06ed10fa8}\label{assemblage_8c_a800d18985dee1a39b3e212d06ed10fa8}} 
+\index{assemblage.\+c@{assemblage.\+c}!Assemblage\+Pool@{Assemblage\+Pool}}
+\index{Assemblage\+Pool@{Assemblage\+Pool}!assemblage.\+c@{assemblage.\+c}}
+\subsubsection{\texorpdfstring{Assemblage\+Pool}{AssemblagePool}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_assemblage_pool}{Assemblage\+Pool}}  \mbox{\hyperlink{struct_assemblage_pool}{Assemblage\+Pool}}}
+
+
+
+Assemblage pool. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{assemblage_8c_afc736eff8f29c778a8ecff259e7608a9}\label{assemblage_8c_afc736eff8f29c778a8ecff259e7608a9}} 
+\index{assemblage.\+c@{assemblage.\+c}!assemblage\+\_\+create@{assemblage\+\_\+create}}
+\index{assemblage\+\_\+create@{assemblage\+\_\+create}!assemblage.\+c@{assemblage.\+c}}
+\subsubsection{\texorpdfstring{assemblage\+\_\+create()}{assemblage\_create()}}
+{\footnotesize\ttfamily int assemblage\+\_\+create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Create a new assemblage. 
+
+\begin{DoxyReturn}{Returns}
+int The new assemblage\+\_\+id 
+\end{DoxyReturn}
+\mbox{\Hypertarget{assemblage_8c_a8824f5dc055fa00237c2ca883a855de7}\label{assemblage_8c_a8824f5dc055fa00237c2ca883a855de7}} 
+\index{assemblage.\+c@{assemblage.\+c}!assemblage\+\_\+create\+\_\+entity@{assemblage\+\_\+create\+\_\+entity}}
+\index{assemblage\+\_\+create\+\_\+entity@{assemblage\+\_\+create\+\_\+entity}!assemblage.\+c@{assemblage.\+c}}
+\subsubsection{\texorpdfstring{assemblage\+\_\+create\+\_\+entity()}{assemblage\_create\_entity()}}
+{\footnotesize\ttfamily int assemblage\+\_\+create\+\_\+entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$}]{entity\+\_\+pool,  }\item[{int}]{assemblage\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Create a new entity in the provided \mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} from the assemblage that is identified by the assemblage\+\_\+id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity\+\_\+pool} & \\
+\hline
+{\em assemblage\+\_\+id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int G\+U\+ID of the newly created entity 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{assemblage_8c_a8824f5dc055fa00237c2ca883a855de7_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{assemblage_8c_a668b0d6cb0ce05fe8b975d1549e18049}\label{assemblage_8c_a668b0d6cb0ce05fe8b975d1549e18049}} 
+\index{assemblage.\+c@{assemblage.\+c}!assemblage\+\_\+register\+\_\+component@{assemblage\+\_\+register\+\_\+component}}
+\index{assemblage\+\_\+register\+\_\+component@{assemblage\+\_\+register\+\_\+component}!assemblage.\+c@{assemblage.\+c}}
+\subsubsection{\texorpdfstring{assemblage\+\_\+register\+\_\+component()}{assemblage\_register\_component()}}
+{\footnotesize\ttfamily int assemblage\+\_\+register\+\_\+component (\begin{DoxyParamCaption}\item[{int}]{assemblage\+\_\+id,  }\item[{\mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} $\ast$}]{component }\end{DoxyParamCaption})}
+
+
+
+Create a entry in the assemablage table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em assemblage\+\_\+id} & The assemblage id to which you wish to add the component \\
+\hline
+{\em component} & Pointer to the component pool that will be added to the newly created entity \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Index that represents the row where the entry lives. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=333pt]{assemblage_8c_a668b0d6cb0ce05fe8b975d1549e18049_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{assemblage_8c_a075483752fba32efb629c3bf3df65279}\label{assemblage_8c_a075483752fba32efb629c3bf3df65279}} 
+\index{assemblage.\+c@{assemblage.\+c}!assemblage\+\_\+remove\+\_\+component@{assemblage\+\_\+remove\+\_\+component}}
+\index{assemblage\+\_\+remove\+\_\+component@{assemblage\+\_\+remove\+\_\+component}!assemblage.\+c@{assemblage.\+c}}
+\subsubsection{\texorpdfstring{assemblage\+\_\+remove\+\_\+component()}{assemblage\_remove\_component()}}
+{\footnotesize\ttfamily int assemblage\+\_\+remove\+\_\+component (\begin{DoxyParamCaption}\item[{int}]{assemblage\+\_\+id,  }\item[{\mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} $\ast$}]{component }\end{DoxyParamCaption})}
+
+
+
+Remove a component from an assemblage. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em assemblage\+\_\+id} & \\
+\hline
+{\em component} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Error codes\+: 0 if okay, -\/1 if assemblage\+\_\+id out not in assemblage table. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{assemblage_8c_a075483752fba32efb629c3bf3df65279_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{assemblage_8c_aec35c8cc69f98525ae6406f687259673}\label{assemblage_8c_aec35c8cc69f98525ae6406f687259673}} 
+\index{assemblage.\+c@{assemblage.\+c}!assemblage\+\_\+row\+\_\+find\+\_\+empty@{assemblage\+\_\+row\+\_\+find\+\_\+empty}}
+\index{assemblage\+\_\+row\+\_\+find\+\_\+empty@{assemblage\+\_\+row\+\_\+find\+\_\+empty}!assemblage.\+c@{assemblage.\+c}}
+\subsubsection{\texorpdfstring{assemblage\+\_\+row\+\_\+find\+\_\+empty()}{assemblage\_row\_find\_empty()}}
+{\footnotesize\ttfamily int assemblage\+\_\+row\+\_\+find\+\_\+empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Find an empty row in the assemblage table. 
+
+\begin{DoxyReturn}{Returns}
+int Index of the empty row. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{assemblage_8c_aec35c8cc69f98525ae6406f687259673_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{assemblage_8c_abef5ea0528d8e5d61219208774e36465}\label{assemblage_8c_abef5ea0528d8e5d61219208774e36465}} 
+\index{assemblage.\+c@{assemblage.\+c}!A\+S\+S\+E\+M\+B\+L\+A\+G\+E\+\_\+\+P\+O\+OL@{A\+S\+S\+E\+M\+B\+L\+A\+G\+E\+\_\+\+P\+O\+OL}}
+\index{A\+S\+S\+E\+M\+B\+L\+A\+G\+E\+\_\+\+P\+O\+OL@{A\+S\+S\+E\+M\+B\+L\+A\+G\+E\+\_\+\+P\+O\+OL}!assemblage.\+c@{assemblage.\+c}}
+\subsubsection{\texorpdfstring{A\+S\+S\+E\+M\+B\+L\+A\+G\+E\+\_\+\+P\+O\+OL}{ASSEMBLAGE\_POOL}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_assemblage_pool}{Assemblage\+Pool}} A\+S\+S\+E\+M\+B\+L\+A\+G\+E\+\_\+\+P\+O\+OL}
+

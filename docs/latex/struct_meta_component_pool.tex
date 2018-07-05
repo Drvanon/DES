@@ -1,0 +1,49 @@
+\hypertarget{struct_meta_component_pool}{}\section{Meta\+Component\+Pool Struct Reference}
+\label{struct_meta_component_pool}\index{Meta\+Component\+Pool@{Meta\+Component\+Pool}}
+
+
+Struct that creates a layer of abstraction between D\+ES and the user\textquotesingle{}s component pools.  
+
+
+
+
+{\ttfamily \#include $<$des.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{des__internal_8h_a3f7e2bcbb0b4c338f3c4f6c937cd4234}{u64}} $\ast$ \mbox{\hyperlink{struct_meta_component_pool_a43d2252901e2a4aa70563cfb707b6fa7}{mask}}
+\item 
+int \mbox{\hyperlink{struct_meta_component_pool_a439227feff9d7f55384e8780cfc2eb82}{size}}
+\item 
+void $\ast$ \mbox{\hyperlink{struct_meta_component_pool_a07582a80a343fc37057a7cc9baf4287e}{component\+\_\+pool}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Struct that creates a layer of abstraction between D\+ES and the user\textquotesingle{}s component pools. 
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{struct_meta_component_pool_a07582a80a343fc37057a7cc9baf4287e}\label{struct_meta_component_pool_a07582a80a343fc37057a7cc9baf4287e}} 
+\index{Meta\+Component\+Pool@{Meta\+Component\+Pool}!component\+\_\+pool@{component\+\_\+pool}}
+\index{component\+\_\+pool@{component\+\_\+pool}!Meta\+Component\+Pool@{Meta\+Component\+Pool}}
+\subsubsection{\texorpdfstring{component\+\_\+pool}{component\_pool}}
+{\footnotesize\ttfamily void$\ast$ component\+\_\+pool}
+
+Reference to the component pool \mbox{\Hypertarget{struct_meta_component_pool_a43d2252901e2a4aa70563cfb707b6fa7}\label{struct_meta_component_pool_a43d2252901e2a4aa70563cfb707b6fa7}} 
+\index{Meta\+Component\+Pool@{Meta\+Component\+Pool}!mask@{mask}}
+\index{mask@{mask}!Meta\+Component\+Pool@{Meta\+Component\+Pool}}
+\subsubsection{\texorpdfstring{mask}{mask}}
+{\footnotesize\ttfamily \mbox{\hyperlink{des__internal_8h_a3f7e2bcbb0b4c338f3c4f6c937cd4234}{u64}}$\ast$ mask}
+
+Bitwise representation of the table. 1 means the slot/row is in use, 0 implies the row can be filled with a new entity. \mbox{\Hypertarget{struct_meta_component_pool_a439227feff9d7f55384e8780cfc2eb82}\label{struct_meta_component_pool_a439227feff9d7f55384e8780cfc2eb82}} 
+\index{Meta\+Component\+Pool@{Meta\+Component\+Pool}!size@{size}}
+\index{size@{size}!Meta\+Component\+Pool@{Meta\+Component\+Pool}}
+\subsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily int size}
+
+Size in rows that the component pool should be able to hold. This information is supplied by the user. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{des_8h}{des.\+h}}\end{DoxyCompactItemize}

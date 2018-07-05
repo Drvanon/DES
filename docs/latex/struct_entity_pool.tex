@@ -1,0 +1,74 @@
+\hypertarget{struct_entity_pool}{}\section{Entity\+Pool Struct Reference}
+\label{struct_entity_pool}\index{Entity\+Pool@{Entity\+Pool}}
+
+
+The pool that holds the entities and component relationships.  
+
+
+
+
+{\ttfamily \#include $<$des.\+h$>$}
+
+
+
+Collaboration diagram for Entity\+Pool\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{struct_entity_pool__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{struct_entity_pool_a439227feff9d7f55384e8780cfc2eb82}{size}}
+\item 
+int $\ast$ \mbox{\hyperlink{struct_entity_pool_a662c49cdd0bdc65d6ce8380c45290bca}{guid}}
+\item 
+\mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} $\ast$$\ast$ \mbox{\hyperlink{struct_entity_pool_ad75884ed3133e339a80f0eb00e0bd974}{component\+\_\+pool}}
+\item 
+int $\ast$ \mbox{\hyperlink{struct_entity_pool_ac5c84e33e66445aa6755a43a7b70ca72}{component\+\_\+index}}
+\item 
+int \mbox{\hyperlink{struct_entity_pool_aefadcdd88d2e6364fd584f35c374d324}{last\+G\+U\+ID}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The pool that holds the entities and component relationships. 
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{struct_entity_pool_ac5c84e33e66445aa6755a43a7b70ca72}\label{struct_entity_pool_ac5c84e33e66445aa6755a43a7b70ca72}} 
+\index{Entity\+Pool@{Entity\+Pool}!component\+\_\+index@{component\+\_\+index}}
+\index{component\+\_\+index@{component\+\_\+index}!Entity\+Pool@{Entity\+Pool}}
+\subsubsection{\texorpdfstring{component\+\_\+index}{component\_index}}
+{\footnotesize\ttfamily int$\ast$ component\+\_\+index}
+
+Index in the component pool specified in {\ttfamily component\+\_\+pool} that gives the value for this entity. \mbox{\Hypertarget{struct_entity_pool_ad75884ed3133e339a80f0eb00e0bd974}\label{struct_entity_pool_ad75884ed3133e339a80f0eb00e0bd974}} 
+\index{Entity\+Pool@{Entity\+Pool}!component\+\_\+pool@{component\+\_\+pool}}
+\index{component\+\_\+pool@{component\+\_\+pool}!Entity\+Pool@{Entity\+Pool}}
+\subsubsection{\texorpdfstring{component\+\_\+pool}{component\_pool}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}}$\ast$$\ast$ component\+\_\+pool}
+
+List of pointers to the relevant component pool \mbox{\Hypertarget{struct_entity_pool_a662c49cdd0bdc65d6ce8380c45290bca}\label{struct_entity_pool_a662c49cdd0bdc65d6ce8380c45290bca}} 
+\index{Entity\+Pool@{Entity\+Pool}!guid@{guid}}
+\index{guid@{guid}!Entity\+Pool@{Entity\+Pool}}
+\subsubsection{\texorpdfstring{guid}{guid}}
+{\footnotesize\ttfamily int$\ast$ guid}
+
+Globally Unique I\+Dentifier of an identity. {\ttfamily guid\mbox{[}i\mbox{]}} represents the i-\/th entity. \mbox{\Hypertarget{struct_entity_pool_aefadcdd88d2e6364fd584f35c374d324}\label{struct_entity_pool_aefadcdd88d2e6364fd584f35c374d324}} 
+\index{Entity\+Pool@{Entity\+Pool}!last\+G\+U\+ID@{last\+G\+U\+ID}}
+\index{last\+G\+U\+ID@{last\+G\+U\+ID}!Entity\+Pool@{Entity\+Pool}}
+\subsubsection{\texorpdfstring{last\+G\+U\+ID}{lastGUID}}
+{\footnotesize\ttfamily int last\+G\+U\+ID}
+
+Last G\+U\+ID given to an entity in this list \mbox{\Hypertarget{struct_entity_pool_a439227feff9d7f55384e8780cfc2eb82}\label{struct_entity_pool_a439227feff9d7f55384e8780cfc2eb82}} 
+\index{Entity\+Pool@{Entity\+Pool}!size@{size}}
+\index{size@{size}!Entity\+Pool@{Entity\+Pool}}
+\subsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily int size}
+
+Amount of rows that the pool will be able to hold 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{des_8h}{des.\+h}}\end{DoxyCompactItemize}

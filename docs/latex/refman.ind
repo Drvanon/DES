@@ -1,0 +1,44 @@
+\begin{theindex}
+
+  \item {Assemblage\+Pool}, \hyperpage{5}
+
+  \indexspace
+
+  \item {component\+\_\+index}
+    \subitem {Entity\+Pool}, \hyperpage{6}
+  \item {component\+\_\+pool}
+    \subitem {Entity\+Pool}, \hyperpage{6}
+    \subitem {Meta\+Component\+Pool}, \hyperpage{7}
+
+  \indexspace
+
+  \item {Entity\+Pool}, \hyperpage{6}
+    \subitem {component\+\_\+index}, \hyperpage{6}
+    \subitem {component\+\_\+pool}, \hyperpage{6}
+    \subitem {guid}, \hyperpage{6}
+
+  \indexspace
+
+  \item {guid}
+    \subitem {Entity\+Pool}, \hyperpage{6}
+
+  \indexspace
+
+  \item {Meta\+Component\+Pool}, \hyperpage{7}
+    \subitem {component\+\_\+pool}, \hyperpage{7}
+    \subitem {size}, \hyperpage{7}
+
+  \indexspace
+
+  \item {Position\+Component\+Pool}, \hyperpage{7}
+
+  \indexspace
+
+  \item {size}
+    \subitem {Meta\+Component\+Pool}, \hyperpage{7}
+
+  \indexspace
+
+  \item {Velocity\+Component\+Pool}, \hyperpage{7}
+
+\end{theindex}
