@@ -1,4 +1,4 @@
-APP_NAME = des
+APP_NAME = bin/des
 CC=gcc
 SOURCES = example.c des.c system/system_velocity.c assemblage.c
 LDFLAGS = -Icomponents -Isystems

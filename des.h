@@ -18,20 +18,23 @@ MetaComponentPool
 
 int entity_pool_find_empty_row();
 
-/* @brief Retrieve a new guid for an entity and register the change
- *
+/**
+ * @brief 
+ * 
  * @return int guid
  */
 int entity_create();
 
-/* @brief Remove all data on the entity.
+/** 
+ * @brief Remove all data on the entity.
  *
  * @param guid
  * @return void
  */
 void entity_remove(int guid);
 
-/* @brief Retrieve all components linked to the entity in the provided components list.
+/** 
+ * @brief Retrieve all components linked to the entity in the provided components list.
  *
  * @param guid
  * @param MetaComponentPool
@@ -42,7 +45,8 @@ void entity_remove(int guid);
 void entity_get_components(int guid, MetaComponentPool* component_pool[ENTITY_COMPONENT_LIMIT]);
 
 
-/* @brief Register a component for use in the DES system.
+/** 
+ * @brief Register a component for use in the DES system.
  *
  * The MetaComponentPool is used to provide an abstraction layer between the DES and the user.
  * It provides information on what index of the user defined component pool is open and
@@ -56,7 +60,8 @@ void entity_get_components(int guid, MetaComponentPool* component_pool[ENTITY_CO
  */
 MetaComponentPool component_pool_register(void *component_pool, int size);
 
-/* @brief Create a new row in the component-entity pool
+/** 
+ * @brief Create a new row in the component-entity pool
  *
  * This function takes a previously established GUID and a MetaComponentPool
  * to create a new row in the component-entity pool. This is to be used
@@ -78,7 +83,8 @@ MetaComponentPool component_pool_register(void *component_pool, int size);
  */
 int component_add_to_entity_ID(int guid, MetaComponentPool *meta_component_pool);
 
-/* @brief Add a component to an entity if the user has already obtained an empty row.
+/** 
+ * @brief Add a component to an entity if the user has already obtained an empty row.
  *
  * It is possible that the user will be aware of the row
  * that the entity was created in, so this is a copy of
@@ -94,13 +100,16 @@ int component_add_to_entity_ID(int guid, MetaComponentPool *meta_component_pool)
  */
 int component_add_to_entity_index(int index, int guid, MetaComponentPool* meta_component_pool);
 
-/* @brief Remove the row of the given index in the component-entity pool.
+/** 
+ * @brief Remove the row of the given index in the component-entity pool.
+ * 
  * @param int index
  * @return int Error codes: 0 is okay, -1 is index out of bounds
  */
 void component_remove_from_entity_index(int index);
 
-/* @brief Remove a single component from the specified entity
+/** 
+ * @brief Remove a single component from the specified entity
  *
  * @param guid
  * @param MetaComponentPool
@@ -108,9 +117,8 @@ void component_remove_from_entity_index(int index);
  */
 void component_remove_from_entity_ID(int guid, MetaComponentPool *meta_component_pool);
 
-
-
-/* @brief Find the first slot in the mask that has not been filled.
+/** 
+ * @brief Find the first slot in the mask that has not been filled.
  *
  * @param MetaComponentPool*
  *
@@ -118,7 +126,8 @@ void component_remove_from_entity_ID(int guid, MetaComponentPool *meta_component
  */
 int component_pool_get_open_slot(MetaComponentPool *meta_component_pool);
 
-/* @brief Find the state of a slot in a component pool
+/** 
+ * @brief Find the state of a slot in a component pool
  *
  * This function will tell the user if the slot is in vacant or not.
  *
@@ -129,7 +138,8 @@ int component_pool_get_open_slot(MetaComponentPool *meta_component_pool);
  */
 int component_pool_get_slot(MetaComponentPool *meta_component_pool, int index);
 
-/* @brief Set slot state in meta component to be vacant or free
+/** 
+ * @brief Set slot state in meta component to be vacant or free
  *
  * @param MetaComponentPool* Meta of the component pool
  * @param int Index of the slot
