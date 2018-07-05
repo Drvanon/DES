@@ -5,10 +5,12 @@
 #define ASSEMBLAGE_POOL_SIZE 100
 #endif
 
+int last_assemblage;
+
 typedef struct
 AssemblagePool {
     int assemblage_id[ASSEMBLAGE_POOL_SIZE];
-    MetaComponentPool meta_component_pool[ASSEMBLAGE_POOL_SIZE];
+    MetaComponentPool *meta_component_pool[ASSEMBLAGE_POOL_SIZE];
 } AssemblagePool;
 
 AssemblagePool ASSEMBLAGE_POOL;
@@ -28,7 +30,17 @@ assemblage_row_find_empty()
 }
 
 int
-assemblage_register_component(int assemblage_id, void* component)
+assemblage_create() {
+    if (last_assemblage > ASSEMBLAGE_POOL_SIZE) {
+        return 1;
+    }
+    last_assemblage++;
+
+    return last_assemblage;
+}
+
+int
+assemblage_register_component(int assemblage_id, MetaComponentPool* component)
 {
     int index = assemblage_row_find_empty();
     if (index < 0) {
@@ -42,9 +54,9 @@ assemblage_register_component(int assemblage_id, void* component)
 }
 
 int
-assemblage_remove_component(int assemblage_id, void* component)
+assemblage_remove_component(int assemblage_id, MetaComponentPool* component)
 {
-    int index = find_empty_asssemblage_row();
+    int index = assemblage_row_find_empty();
     if (index < 0) {
         return -1;
     }
@@ -54,12 +66,12 @@ assemblage_remove_component(int assemblage_id, void* component)
 }
 
 int
-assemblage_create_entity(int assemblage_id)
+assemblage_create_entity(EntityPool *entity_pool, int assemblage_id)
 {
-    int guid = entity_create();
+    int guid = entity_create(entity_pool);
     for (int i = 0; i < ASSEMBLAGE_POOL_SIZE; i++) {
         if (assemblage_id == ASSEMBLAGE_POOL.assemblage_id[i]) {
-            component_add_to_entity_ID(guid, ASSEMBLAGE_POOL.meta_component_pool[i]);
+            component_add_to_entity_ID(entity_pool, guid, ASSEMBLAGE_POOL.meta_component_pool[i]);
         }
     }
 

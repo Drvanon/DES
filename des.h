@@ -1,12 +1,5 @@
 #include "des_internal.h"
 
-#ifndef ENTITY_POOL_SIZE
-#define ENTITY_POOL_SIZE 100
-#endif
-#ifndef ENTITY_COMPONENT_LIMIT
-#define ENTITY_COMPONENT_LIMIT 50
-#endif
-
 typedef struct
 MetaComponentPool
 {
@@ -16,20 +9,44 @@ MetaComponentPool
     void *component_pool;
 } MetaComponentPool;
 
+typedef struct
+EntityPool
+{
+    int size;
+    int *guid;
+    MetaComponentPool **component_pool;
+    int *component_index;
+} EntityPool;
+
+
+/* @brief Create entitypool and malloc it's component with the size provided, returns NULL if insufficient RAM
+ *
+ * @param int size
+ * @return EntityPool*
+ */
+EntityPool *entity_pool_create(int size);
+
+/* @brief Free all memory allocated for the entitypool
+ *
+ * @param EntityPool*
+ * @return void
+ */
+void entity_pool_destroy(EntityPool *entity_pool);
+
 int entity_pool_find_empty_row();
 
 /* @brief Retrieve a new guid for an entity and register the change
  *
  * @return int guid
  */
-int entity_create();
+int entity_create(EntityPool *entity_pool);
 
 /* @brief Remove all data on the entity.
  *
  * @param guid
  * @return void
  */
-void entity_remove(int guid);
+void entity_remove(EntityPool *entity_pool, int guid);
 
 /* @brief Retrieve all components linked to the entity in the provided components list.
  *
@@ -39,7 +56,7 @@ void entity_remove(int guid);
  *
  * @return void
  */
-void entity_get_components(int guid, MetaComponentPool* component_pool[ENTITY_COMPONENT_LIMIT]);
+EntityPool *entity_get_components(EntityPool *entity_pool, int guid, int max_query_size);
 
 
 /* @brief Register a component for use in the DES system.
@@ -60,9 +77,8 @@ MetaComponentPool component_pool_register(void *component_pool, int size);
  *
  * This function takes a previously established GUID and a MetaComponentPool
  * to create a new row in the component-entity pool. This is to be used
- * in combination with createEntity, after having regisetered your
+ * in combination with createEntity, after having registered your
  * component.
- *
  * @code
  * int your_component_pool_size = 200; // Amount of rows the componentPool can have
  * MetaComponentPoolPool YourMetaComponentPoolPool = component_register(*YourComponentPool, your_component_pool_size);
@@ -76,7 +92,7 @@ MetaComponentPool component_pool_register(void *component_pool, int size);
  *
  * @return int This variable refers to the index of the user defined component pool that can be set to the prefered data, see example above.
  */
-int component_add_to_entity_ID(int guid, MetaComponentPool *meta_component_pool);
+int component_add_to_entity_ID(EntityPool *entity_pool, int guid, MetaComponentPool *meta_component_pool);
 
 /* @brief Add a component to an entity if the user has already obtained an empty row.
  *
@@ -84,7 +100,9 @@ int component_add_to_entity_ID(int guid, MetaComponentPool *meta_component_pool)
  * that the entity was created in, so this is a copy of
  * add_component_to_entity_ID, but works based of index instead
  * of id, which is much faster, for we will not have to go
- * trough the entire entity pool.
+ * trough the entire entity pool. An example for this might be inplace
+ * replacement of a row.
+
  *
  * @param int index of the entity-component pool
  * @param int guid of the new entity
@@ -92,13 +110,13 @@ int component_add_to_entity_ID(int guid, MetaComponentPool *meta_component_pool)
  *
  * @return int Index of component pool that can be used to store the data the user wants to store
  */
-int component_add_to_entity_index(int index, int guid, MetaComponentPool* meta_component_pool);
+int component_add_to_entity_index(EntityPool *entity_pool, int index, int guid, MetaComponentPool* meta_component_pool);
 
 /* @brief Remove the row of the given index in the component-entity pool.
  * @param int index
  * @return int Error codes: 0 is okay, -1 is index out of bounds
  */
-void component_remove_from_entity_index(int index);
+int component_remove_from_entity_index(EntityPool *entity_pool, int index);
 
 /* @brief Remove a single component from the specified entity
  *
@@ -106,7 +124,7 @@ void component_remove_from_entity_index(int index);
  * @param MetaComponentPool
  * @return int Error codes: 0 is okay, -1 means could not find entity-component in pool.
  */
-void component_remove_from_entity_ID(int guid, MetaComponentPool *meta_component_pool);
+int component_remove_from_entity_ID(EntityPool *entity_pool, int guid, MetaComponentPool *meta_component_pool);
 
 
 

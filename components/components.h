@@ -2,14 +2,14 @@
 #define COMPONENTS_H
 
 typedef struct
-PositionComponentPool 
+PositionComponentPool
 {
     float *x_position;
     float *y_position;
 } PositionComponentPool;
 
 typedef struct
-VelocityComponentPool 
+VelocityComponentPool
 {
     float *x_velocity;
     float *y_velocity;

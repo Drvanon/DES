@@ -5,25 +5,41 @@
 
 int lastGUID = 0;
 
-typedef struct
-EntityPool
-{
-    int guid[ENTITY_POOL_SIZE];
-    MetaComponentPool *component_pool[ENTITY_POOL_SIZE];
-    int component_data_id[ENTITY_POOL_SIZE];
-} EntityPool;
-
 EntityPool ENTITY_POOL;
 
+EntityPool *entity_pool_create (int size)
+{
+    EntityPool *entity_pool = malloc(sizeof(entity_pool));
+    entity_pool->size = size;
+    entity_pool->guid = malloc(size*sizeof(int));
+    entity_pool->component_pool = malloc(size*sizeof(void *));
+    entity_pool->component_index = malloc(size*sizeof(int));
+
+    if (entity_pool->guid == NULL | entity_pool->component_pool == NULL | entity_pool->component_index == NULL) {
+        entity_pool_destroy(entity_pool);
+    }
+
+    return entity_pool;
+}
+
+void entity_pool_destroy (EntityPool *entity_pool)
+{
+    free(entity_pool->guid);
+    free(entity_pool->component_pool);
+    free(entity_pool->component_index);
+
+    free(entity_pool);
+}
+
 int
-entity_pool_find_empty_row()
+entity_pool_find_empty_row(EntityPool *entity_pool)
 {
     int index = 0;
-    while (ENTITY_POOL.guid[index] && !(index >= ENTITY_POOL_SIZE)) {
+    while (entity_pool->guid[index] && !(index >= entity_pool->size)) {
         index++;
     }
 
-    if (index >= ENTITY_POOL_SIZE) {
+    if (index >= entity_pool->size) {
         return -1;
     }
 
@@ -31,93 +47,103 @@ entity_pool_find_empty_row()
 }
 
 int
-entity_create()
+entity_create(EntityPool *entity_pool)
 {
-    int index = entity_pool_find_empty_row();
+    int index = entity_pool_find_empty_row(entity_pool);
     if (index == -1) {
         return -1;
     }
 
     lastGUID++;
-    ENTITY_POOL.guid[index] = lastGUID;
+    entity_pool->guid[index] = lastGUID;
 
     return lastGUID;
 }
 
 int
-component_add_to_entity_ID(int guid, MetaComponentPool *meta_component_pool)
+component_add_to_entity_ID(EntityPool *entity_pool, int guid, MetaComponentPool *meta_component_pool)
 {
-    int index = entity_pool_find_empty_row();
-    int component_index = component_add_to_entity_index(index, guid, meta_component_pool);
+    int index = entity_pool_find_empty_row(entity_pool);
+    int component_index = component_add_to_entity_index(entity_pool, index, guid, meta_component_pool);
 
     return component_index;
 }
 
 int
-component_add_to_entity_index(int index, int guid, MetaComponentPool* meta_component_pool)
+component_add_to_entity_index(EntityPool *entity_pool, int index, int guid, MetaComponentPool* meta_component_pool)
 {
-    ENTITY_POOL.guid[index] = guid;
-    ENTITY_POOL.component_pool[index] = meta_component_pool;
-
     int component_index = component_pool_get_open_slot(meta_component_pool);
     if (component_index > -1) {
         component_pool_set_slot(meta_component_pool, component_index, 1);
     }
 
+    entity_pool->guid[index] = guid;
+    entity_pool->component_pool[index] = meta_component_pool;
+    entity_pool->component_index[index] = component_index;
+
     return component_index;
 }
 
-void
-component_remove_from_entity_index(int index)
+int
+component_remove_from_entity_index(EntityPool *entity_pool, int index)
 {
-    // TODO: Error code: index out of bounds
-    component_pool_set_slot(ENTITY_POOL.component_pool[index], ENTITY_POOL.component_data_id[index], 0);
+    if (index > entity_pool->size) {
+        return -1;
+    }
+    component_pool_set_slot(entity_pool->component_pool[index], entity_pool->component_index[index], 0);
 
-    ENTITY_POOL.guid[index] = 0;
-    ENTITY_POOL.component_pool[index] = NULL;
-    ENTITY_POOL.component_data_id[index] = 0;
+    entity_pool->guid[index] = 0;
+    entity_pool->component_pool[index] = NULL;
+    entity_pool->component_index[index] = 0;
+
+    return 0;
 }
 
-void
-component_remove_from_entity_ID(int guid, MetaComponentPool *meta_component_pool)
+int
+component_remove_from_entity_ID(EntityPool *entity_pool, int guid, MetaComponentPool *meta_component_pool)
 {
     int index = 0;
-    while (!(guid == ENTITY_POOL.guid[index]) |
-           !(ENTITY_POOL.component_pool[index] == meta_component_pool)) {
+    while (!(guid == entity_pool->guid[index]) |
+           !(entity_pool->component_pool[index] == meta_component_pool)) {
         index++;
     }
 
-    component_remove_from_entity_index(index);
+    int code = component_remove_from_entity_index(entity_pool, index);
+    return code;
 }
 
 void
-entity_remove(int guid)
+entity_remove(EntityPool *entity_pool, int guid)
 {
     int index = 0;
-    while (index <= ENTITY_POOL_SIZE) {
-        if (ENTITY_POOL.guid[index] == guid) {
-            component_remove_from_entity_index(index);
+    while (index <= entity_pool->size) {
+        if (entity_pool->guid[index] == guid) {
+            component_remove_from_entity_index(entity_pool, index);
         }
 
         index++;
     }
 }
 
-void
-entity_get_components(int guid, MetaComponentPool *component_pool[ENTITY_COMPONENT_LIMIT]) 
+EntityPool
+*entity_get_components(EntityPool *entity_pool, int guid, int max_query_size)
 {
-    // TODO: remove limit, user will use sizeof
-    // TODO: fix component pool vs components
+    EntityPool *ret_entity_pool = entity_pool_create(max_query_size);
     int index = 0;
-    int component_index = 0;
-    while (index <= ENTITY_POOL_SIZE) {
-        if (ENTITY_POOL.guid[index] == guid) {
-            component_pool[component_index] = ENTITY_POOL.component_pool[index];
-            component_index++;
+    int ret_index = 0;
+    while (index <= entity_pool->size & index < max_query_size) {
+        if (entity_pool->guid[index] == guid) {
+            // Copy the relevant row to the returning entity_pool
+            ret_entity_pool->guid[ret_index] = entity_pool->guid[index];
+            ret_entity_pool->component_pool[ret_index] = entity_pool->component_pool[index];
+            ret_entity_pool->component_index[ret_index] = entity_pool->component_index[index];
+            ret_index++;
        }
 
         index++;
     }
+
+    return ret_entity_pool;
 }
 
 MetaComponentPool
@@ -168,7 +194,7 @@ component_pool_get_slot(MetaComponentPool *meta_component_pool, int index)
 }
 
 int
-component_pool_set_slot(MetaComponentPool *meta_component_pool, int index, int state) 
+component_pool_set_slot(MetaComponentPool *meta_component_pool, int index, int state)
 {
     if (index > meta_component_pool->size) {
         return -1;
