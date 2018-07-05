@@ -3,10 +3,6 @@
 
 #include "des.h"
 
-int lastGUID = 0;
-
-EntityPool ENTITY_POOL;
-
 EntityPool *entity_pool_create (int size)
 {
     EntityPool *entity_pool = malloc(sizeof(entity_pool));
@@ -54,10 +50,10 @@ entity_create(EntityPool *entity_pool)
         return -1;
     }
 
-    lastGUID++;
-    entity_pool->guid[index] = lastGUID;
+    entity_pool->lastGUID++;
+    entity_pool->guid[index] = entity_pool->lastGUID;
 
-    return lastGUID;
+    return entity_pool->lastGUID;
 }
 
 int

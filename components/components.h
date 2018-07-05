@@ -1,6 +1,10 @@
 #ifndef COMPONENTS_H
 #define COMPONENTS_H
 
+/**
+ * @brief Component for the position of the entity
+ * 
+ */
 typedef struct
 PositionComponentPool
 {
@@ -8,6 +12,10 @@ PositionComponentPool
     float *y_position;
 } PositionComponentPool;
 
+/**
+ * @brief Component with the velocity data. This gets added to the position by a system
+ * 
+ */
 typedef struct
 VelocityComponentPool
 {

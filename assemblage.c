@@ -5,8 +5,10 @@
 #define ASSEMBLAGE_POOL_SIZE 100
 #endif
 
-int last_assemblage;
-
+/**
+ * @brief Assemblage pool
+ * 
+ */
 typedef struct
 AssemblagePool {
     int assemblage_id[ASSEMBLAGE_POOL_SIZE];
@@ -31,9 +33,11 @@ assemblage_row_find_empty()
 
 int
 assemblage_create() {
+    static int last_assemblage = 0;
     if (last_assemblage > ASSEMBLAGE_POOL_SIZE) {
         return 1;
     }
+    
     last_assemblage++;
 
     return last_assemblage;
