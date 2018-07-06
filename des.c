@@ -24,7 +24,7 @@ void entity_pool_destroy(EntityPool *entity_pool)
     free(entity_pool->component_pool);
     free(entity_pool->component_index);
 
-    //free(entity_pool);
+    free(entity_pool);
 }
 
 int
@@ -147,7 +147,7 @@ component_pool_register(void *component_pool, int size)
 {
     MetaComponentPool meta_component_pool;
     meta_component_pool.size = size;
-    meta_component_pool.mask = malloc(size);
+    meta_component_pool.mask = calloc(size, size);
     meta_component_pool.component_pool = component_pool;
 
     return meta_component_pool;

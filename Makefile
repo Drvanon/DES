@@ -10,4 +10,4 @@ debug:
 	$(CC) $(SOURCES) -g -o $(APP_NAME) $(LDFLAGS)
 
 sanitize:
-	clang $(SOURCES) -g -o bin/des_sanitized $(LDFLAGS)
+	$(CC) $(SOURCES) -g -o $(APP_NAME) $(LDFLAGS) -fsanitize=memory
