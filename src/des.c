@@ -21,7 +21,7 @@ EntityPool
 
 void entity_pool_destroy(EntityPool *entity_pool)
 {
-    free(entity_pool->guid);
+    //free(entity_pool->guid);
     free(entity_pool->component_pool);
     free(entity_pool->component_index);
 

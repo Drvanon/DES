@@ -64,8 +64,8 @@ def build_files_2(n, args): # We needed C, not CPP
             # n.build(obj, "cxx", src, precompiled_header)
             objects.append(obj)
 
-    n.build("main" + exe_ext, "clink", objects)
-    n.default("main" + exe_ext)
+    n.build("bin/des" + exe_ext, "clink", objects)
+    n.default("bin/des" + exe_ext)
 
 
 def build_rules(n, args):

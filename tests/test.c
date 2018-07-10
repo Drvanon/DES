@@ -6,9 +6,10 @@ typedef struct TestComponentPool {
     int *member2;
 } TestComponentPool;
 
+/*
 int main () {
     // Setup 1 component
-    int size = 4*64;
+     int size = 4*64;
     TestComponentPool test_component_pool;
     MetaComponentPool meta_test_pool = component_pool_register(&meta_test_pool, size);
     test_component_pool.member1 = malloc(size*sizeof(int));
@@ -20,4 +21,4 @@ int main () {
     int expected_index = entity_get_components()
 
     return 0;
-}
+}*/
