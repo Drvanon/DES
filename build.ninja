@@ -1,16 +1,22 @@
-ninja_required_version = 1.8
-
-sources = des.c system/system_velocity.c assemblage.c
-cflags = -Wall
-ldflags = -Icomponents -Isystems
-
-rule default
-    command = gcc $cflags $in -o $out $ldflags
-
-rule debug
-    cflags = -Wall -g
-    command = gcc $cflags $in -o $out $ldflags
-
-rule sanitze
-    command = clang $cflags $in -o $out $ldflags
-
+cc = gcc
+cxx = g++
+dbgflags = 
+optflags = -O2 -DNDEBUG
+cflags = -std=c99 -Wall -pedantic -fwrapv
+clinkflags = 
+cxxflags = -std=c++11 -Wall -pedantic -fwrapv
+cxxlinkflags = 
+rule cc
+  command = $cc $xtype -MMD -MF $out.d $optflags $dbgflags $cflags -c $in $
+      -o $out
+  depfile = $out.d
+rule cxx
+  command = $cxx $xtype -MMD -MF $out.d $optflags $dbgflags $cxxflags -c $
+      $in -o $out
+  depfile = $out.d
+rule clink
+  command = $cc $optflags $dbgflags $in $clinkflags -o $out
+rule cxxlink
+  command = $cxx $optflags $dbgflags $in $cxxlinkflags -o $out
+build main: cxxlink
+default main
