@@ -8,6 +8,7 @@ rule default
     command = gcc $cflags $in -o $out $ldflags
 
 rule debug
+    cflags = -Wall -g
     command = gcc $cflags $in -o $out $ldflags
 
 rule sanitze
