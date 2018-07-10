@@ -6,6 +6,7 @@ LDFLAGS = -Icomponents -Isystems
 default:
 	$(CC) $(SOURCES) $(LDFLAGS) -g -o $(APP_NAME)
 
+# Aopend .exe for clang
 win32:
 	$(CC) $(SOURCES) $(LDFLAGS) -g -o $(APP_NAME).exe
 
