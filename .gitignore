@@ -62,3 +62,7 @@ bin/
 
 
 # End of https://www.gitignore.io/api/c
+
+# Ninja
+.ninja_deps
+.ninja_log

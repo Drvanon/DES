@@ -1,6 +1,5 @@
 """
-This file was blatently stolen from orlp on gist.github.com:
-    https://gist.github.com/orlp/95f2b788bf02b7041cf7
+This file was blatently stolen from orlp on gist.github.com: https://gist.github.com/orlp/95f2b788bf02b7041cf7
 
 We have edited it too suit our needs. No original ideas otherwise.
 """
@@ -47,6 +46,28 @@ def build_files(n, args):
     n.default("main" + exe_ext)
 
 
+def build_files_2(n, args): # We needed C, not CPP
+    exe_ext = ".exe" if os.name == "nt" else ""
+    obj_ext = ".o"
+
+    # # Precompiled header.
+    # n.build("src/precompile.h.gch", "cxx", "src/precompile.h",
+    #         variables={"xtype": "-x c++-header"})
+    # precompiled_header = "src/precompile.h.gch"
+
+    objects = []
+    for root, dirnames, filenames in os.walk("src"):
+        for filename in fnmatch.filter(filenames, "*.c"):
+            src = os.path.join(root, filename)
+            obj = os.path.join("obj", os.path.splitext(src)[0] + obj_ext)
+            n.build(obj, "cc", src)
+            # n.build(obj, "cxx", src, precompiled_header)
+            objects.append(obj)
+
+    n.build("main" + exe_ext, "clink", objects)
+    n.default("main" + exe_ext)
+
+
 def build_rules(n, args):
     n.variable("cc", "gcc")
     n.variable("cxx", "g++")
@@ -61,7 +82,7 @@ def build_rules(n, args):
     native_flag = " -march=native" if args["--native"] else ""
     n.variable("optflags", "-O2" + native_flag + debug_flag)
 
-    defines = [" -D" + d for d in args["-D"]]
+    defines = [" " + d for d in args["-D"]]
 
     cflags = "-std=c99 -Wall -pedantic -fwrapv"
     cxxflags = "-std=c++11 -Wall -pedantic -fwrapv"
@@ -109,7 +130,7 @@ first_time = not os.path.isfile(args["-o"])
 with open(args["-o"], "w") as ninja_file:
     n = ninja_syntax.Writer(ninja_file)
     build_rules(n, args)
-    build_files(n, args)
+    build_files_2(n, args)
 
 # Check if we have ninja in path.
 path = os.environ.get("PATH", os.defpath).split(os.pathsep)

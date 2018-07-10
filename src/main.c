@@ -3,8 +3,8 @@
 #include <time.h>
 
 #include "des.h"
-#include "components/components.h"
-#include "system/system_velocity.h"
+#include "components.h"
+#include "system_velocity.h"
 
 #ifndef POOLSIZE
 #define POOLSIZE 2048

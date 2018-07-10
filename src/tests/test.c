@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "des.h"
+#include "../des.h"
 
 typedef struct TestComponentPool {
     int *member1;
