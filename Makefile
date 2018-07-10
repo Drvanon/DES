@@ -1,13 +1,13 @@
 APP_NAME = bin/des
-CC=clang
+CC=gcc
 SOURCES = example.c des.c system/system_velocity.c assemblage.c
 LDFLAGS = -Icomponents -Isystems
 
 default:
-	$(CC) $(SOURCES) -o $(APP_NAME) $(LDFLAGS)
+	$(CC) $(SOURCES) $(LDFLAGS) -g -o $(APP_NAME)
 
-debug:
-	$(CC) $(SOURCES) -g -o $(APP_NAME) $(LDFLAGS)
+win32:
+	$(CC) $(SOURCES) $(LDFLAGS) -g -o $(APP_NAME).exe
 
 sanitize:
-	$(CC) $(SOURCES) -g -o $(APP_NAME) $(LDFLAGS) -fsanitize=memory
+	$(CC) $(SOURCES) $(LDFLAGS) -g -o $(APP_NAME) -fsanitize=memory

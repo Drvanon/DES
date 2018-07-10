@@ -3,11 +3,12 @@
 
 #include "des.h"
 
-EntityPool *entity_pool_create(int size)
+EntityPool 
+*entity_pool_create(int size)
 {
     EntityPool *entity_pool = malloc(sizeof(entity_pool));
     entity_pool->size = size;
-    entity_pool->guid = calloc(size, size*sizeof(int));
+    entity_pool->guid = calloc(size, sizeof(int));
     entity_pool->component_pool = malloc(size*sizeof(void *));
     entity_pool->component_index = malloc(size*sizeof(int));
 
@@ -24,7 +25,7 @@ void entity_pool_destroy(EntityPool *entity_pool)
     free(entity_pool->component_pool);
     free(entity_pool->component_index);
 
-    free(entity_pool);
+    //free(entity_pool);
 }
 
 int
