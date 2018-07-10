@@ -104,8 +104,6 @@ def build_rules(n, args):
 
 
 # Everything below this line is dependency boilerplate.
-
-
 try:
     from docopt import docopt
     import ninja_syntax
