@@ -1,0 +1,7 @@
+includes:
+    - ../include
+search_directories:
+    - ../lib
+libraries:
+    - des
+
