@@ -21,7 +21,7 @@ rule clink
 rule cxxlink
   command = $cxx $optflags $dbgflags $in $cxxlinkflags -o $out
 rule liblink
-  command = ar rs $out $cflags $in
+  command = ar rs $out $linkflags $in
 build obj/src/main.o: cc src/main.c
 build obj/src/systems/system_velocity.o: cc src/systems/system_velocity.c
 build bin/main: clink obj/src/main.o obj/src/systems/system_velocity.o

@@ -1,0 +1,296 @@
+\hypertarget{component_8h}{}\section{/home/drvanon/\+Documents/scripts/\+D\+E\+S/include/component.h File Reference}
+\label{component_8h}\index{/home/drvanon/\+Documents/scripts/\+D\+E\+S/include/component.\+h@{/home/drvanon/\+Documents/scripts/\+D\+E\+S/include/component.\+h}}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{component_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$ \mbox{\hyperlink{component_8h_a67e67b5444435172378a5e24701a02e7}{entity\+\_\+get\+\_\+components}} (\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$entity\+\_\+pool, int guid, int max\+\_\+query\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Retrieve upto max\+\_\+query\+\_\+size components linked to the entity in an \mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} \mbox{\hyperlink{component_8h_ac9e98c2d8d4ef8d84bda94d824fbc7b0}{component\+\_\+pool\+\_\+register}} (void $\ast$component\+\_\+pool, int size)
+\begin{DoxyCompactList}\small\item\em Register a component for use in the D\+ES system. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{component_8h_a45e8d15e4080e8fb930e984fc9bac47a}{component\+\_\+add\+\_\+to\+\_\+entity\+\_\+\+ID}} (\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$entity\+\_\+pool, int guid, \mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} $\ast$meta\+\_\+component\+\_\+pool)
+\begin{DoxyCompactList}\small\item\em Create a new row in the component-\/entity pool. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{component_8h_a494f2d263a1053e2962e158f0a4c7e3a}{component\+\_\+add\+\_\+to\+\_\+entity\+\_\+index}} (\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$entity\+\_\+pool, int index, int guid, \mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} $\ast$meta\+\_\+component\+\_\+pool)
+\begin{DoxyCompactList}\small\item\em Add a component to an entity if the user has already obtained an empty row. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{component_8h_a46ad35b10ce23dc588b43f20fa5be2c2}{component\+\_\+remove\+\_\+from\+\_\+entity\+\_\+index}} (\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$entity\+\_\+pool, int index)
+\begin{DoxyCompactList}\small\item\em Remove the row of the given index in the component-\/entity pool. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{component_8h_af64e2220dd5596ce4f119c7887eac5c0}{component\+\_\+remove\+\_\+from\+\_\+entity\+\_\+\+ID}} (\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$entity\+\_\+pool, int guid, \mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} $\ast$meta\+\_\+component\+\_\+pool)
+\begin{DoxyCompactList}\small\item\em Remove a single component from the specified entity. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{component_8h_a997d5c45b99e95e34d3d00107eec6618}{component\+\_\+pool\+\_\+get\+\_\+open\+\_\+slot}} (\mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} $\ast$meta\+\_\+component\+\_\+pool)
+\begin{DoxyCompactList}\small\item\em Find the first slot in the mask that has not been filled. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{component_8h_a882c82b33bb428b62dab1b01c37e12a2}{component\+\_\+pool\+\_\+get\+\_\+slot}} (\mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} $\ast$meta\+\_\+component\+\_\+pool, int index)
+\begin{DoxyCompactList}\small\item\em Find the state of a slot in a component pool. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{component_8h_a1092fc1b1a8b8c021bc8e9dca328cf6c}{component\+\_\+pool\+\_\+set\+\_\+slot}} (\mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} $\ast$meta\+\_\+component\+\_\+pool, int index, int state)
+\begin{DoxyCompactList}\small\item\em Set slot state in meta component to be vacant or free. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{component_8h_a45e8d15e4080e8fb930e984fc9bac47a}\label{component_8h_a45e8d15e4080e8fb930e984fc9bac47a}} 
+\index{component.\+h@{component.\+h}!component\+\_\+add\+\_\+to\+\_\+entity\+\_\+\+ID@{component\+\_\+add\+\_\+to\+\_\+entity\+\_\+\+ID}}
+\index{component\+\_\+add\+\_\+to\+\_\+entity\+\_\+\+ID@{component\+\_\+add\+\_\+to\+\_\+entity\+\_\+\+ID}!component.\+h@{component.\+h}}
+\subsubsection{\texorpdfstring{component\+\_\+add\+\_\+to\+\_\+entity\+\_\+\+I\+D()}{component\_add\_to\_entity\_ID()}}
+{\footnotesize\ttfamily int component\+\_\+add\+\_\+to\+\_\+entity\+\_\+\+ID (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$}]{entity\+\_\+pool,  }\item[{int}]{guid,  }\item[{\mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} $\ast$}]{meta\+\_\+component\+\_\+pool }\end{DoxyParamCaption})}
+
+
+
+Create a new row in the component-\/entity pool. 
+
+This function takes a previously established G\+U\+ID and a \mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} to create a new row in the component-\/entity pool. This is to be used in combination with create\+Entity, after having registered your component. 
+\begin{DoxyCode}
+\textcolor{keywordtype}{int} your\_component\_pool\_size = 200; \textcolor{comment}{// Amount of rows the componentPool can have}
+EnityPool *entity\_pool = \mbox{\hyperlink{examples_2velocity_2include_2des_8h_a44b8855c1b56396b8faedcd389fe4546}{entity\_pool\_create}}(2000);
+MetaComponentPoolPool YourMetaComponentPoolPool = component\_register(entity\_pool, *YourComponentPool, 
+      your\_component\_pool\_size);
+\textcolor{keywordtype}{int} guid = \mbox{\hyperlink{examples_2velocity_2include_2des_8h_ae84c376a8fb9ccf53cd54e0736e76eb2}{entity\_create}}();
+\textcolor{keywordtype}{int} component\_index = \mbox{\hyperlink{examples_2velocity_2include_2des_8h_a45e8d15e4080e8fb930e984fc9bac47a}{component\_add\_to\_entity\_ID}}(guid, &YourMetaComponentPoolPool
+      );
+YourComponentPool.member1[component\_index] = \textcolor{stringliteral}{"Some content"};
+
+\textcolor{comment}{// And after running the program:}
+\mbox{\hyperlink{examples_2velocity_2include_2des_8h_a3e377867fe9b332352eb47cdf9dc1a4c}{entity\_pool\_destroy}}(entity\_pool);
+free(YourComponent.member1);
+free(YourComponent.member2); \textcolor{comment}{// etc.}
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity\+\_\+pool} & \\
+\hline
+{\em guid} & \\
+\hline
+{\em meta\+\_\+component\+\_\+pool} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int This variable refers to the index of the user defined component pool that can be set to the prefered data, see example above. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{component_8h_a45e8d15e4080e8fb930e984fc9bac47a_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{component_8h_a494f2d263a1053e2962e158f0a4c7e3a}\label{component_8h_a494f2d263a1053e2962e158f0a4c7e3a}} 
+\index{component.\+h@{component.\+h}!component\+\_\+add\+\_\+to\+\_\+entity\+\_\+index@{component\+\_\+add\+\_\+to\+\_\+entity\+\_\+index}}
+\index{component\+\_\+add\+\_\+to\+\_\+entity\+\_\+index@{component\+\_\+add\+\_\+to\+\_\+entity\+\_\+index}!component.\+h@{component.\+h}}
+\subsubsection{\texorpdfstring{component\+\_\+add\+\_\+to\+\_\+entity\+\_\+index()}{component\_add\_to\_entity\_index()}}
+{\footnotesize\ttfamily int component\+\_\+add\+\_\+to\+\_\+entity\+\_\+index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$}]{entity\+\_\+pool,  }\item[{int}]{index,  }\item[{int}]{guid,  }\item[{\mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} $\ast$}]{meta\+\_\+component\+\_\+pool }\end{DoxyParamCaption})}
+
+
+
+Add a component to an entity if the user has already obtained an empty row. 
+
+It is possible that the user will be aware of the row that the entity was created in, so this is a copy of add\+\_\+component\+\_\+to\+\_\+entity\+\_\+\+ID, but works based of index instead of id, which is much faster, for we will not have to go trough the entire entity pool. An example for this might be inplace replacement of a row.
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity\+\_\+pool} & \mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} in which to perform the action. \\
+\hline
+{\em index} & index of the entity-\/component pool \\
+\hline
+{\em guid} & guid of the new entity \\
+\hline
+{\em meta\+\_\+component\+\_\+pool} & \mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} of the component that is to be added to the entity \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Index of component pool that can be used to store the data the user wants to store 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{component_8h_a494f2d263a1053e2962e158f0a4c7e3a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{component_8h_a494f2d263a1053e2962e158f0a4c7e3a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{component_8h_a997d5c45b99e95e34d3d00107eec6618}\label{component_8h_a997d5c45b99e95e34d3d00107eec6618}} 
+\index{component.\+h@{component.\+h}!component\+\_\+pool\+\_\+get\+\_\+open\+\_\+slot@{component\+\_\+pool\+\_\+get\+\_\+open\+\_\+slot}}
+\index{component\+\_\+pool\+\_\+get\+\_\+open\+\_\+slot@{component\+\_\+pool\+\_\+get\+\_\+open\+\_\+slot}!component.\+h@{component.\+h}}
+\subsubsection{\texorpdfstring{component\+\_\+pool\+\_\+get\+\_\+open\+\_\+slot()}{component\_pool\_get\_open\_slot()}}
+{\footnotesize\ttfamily int component\+\_\+pool\+\_\+get\+\_\+open\+\_\+slot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} $\ast$}]{meta\+\_\+component\+\_\+pool }\end{DoxyParamCaption})}
+
+
+
+Find the first slot in the mask that has not been filled. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em meta\+\_\+component\+\_\+pool} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int component index of the open slot. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{component_8h_a882c82b33bb428b62dab1b01c37e12a2}\label{component_8h_a882c82b33bb428b62dab1b01c37e12a2}} 
+\index{component.\+h@{component.\+h}!component\+\_\+pool\+\_\+get\+\_\+slot@{component\+\_\+pool\+\_\+get\+\_\+slot}}
+\index{component\+\_\+pool\+\_\+get\+\_\+slot@{component\+\_\+pool\+\_\+get\+\_\+slot}!component.\+h@{component.\+h}}
+\subsubsection{\texorpdfstring{component\+\_\+pool\+\_\+get\+\_\+slot()}{component\_pool\_get\_slot()}}
+{\footnotesize\ttfamily int component\+\_\+pool\+\_\+get\+\_\+slot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} $\ast$}]{meta\+\_\+component\+\_\+pool,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Find the state of a slot in a component pool. 
+
+This function will tell the user if the slot is in vacant or not.
+
+
+\begin{DoxyParams}{Parameters}
+{\em meta\+\_\+component\+\_\+pool} & \\
+\hline
+{\em index} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int bool value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{component_8h_ac9e98c2d8d4ef8d84bda94d824fbc7b0}\label{component_8h_ac9e98c2d8d4ef8d84bda94d824fbc7b0}} 
+\index{component.\+h@{component.\+h}!component\+\_\+pool\+\_\+register@{component\+\_\+pool\+\_\+register}}
+\index{component\+\_\+pool\+\_\+register@{component\+\_\+pool\+\_\+register}!component.\+h@{component.\+h}}
+\subsubsection{\texorpdfstring{component\+\_\+pool\+\_\+register()}{component\_pool\_register()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} component\+\_\+pool\+\_\+register (\begin{DoxyParamCaption}\item[{void $\ast$}]{component\+\_\+pool,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Register a component for use in the D\+ES system. 
+
+The \mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} is used to provide an abstraction layer between the D\+ES and the user. It provides information on what index of the user defined component pool is open and what row is already in use by an entity. It also gives information on the size of the pool and refers to the component pool.
+
+
+\begin{DoxyParams}{Parameters}
+{\em component\+\_\+pool} & Pointer to the user-\/defined component\+\_\+pool. \\
+\hline
+{\em size} & Size of the memory allocated for the pools. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{component_8h_a1092fc1b1a8b8c021bc8e9dca328cf6c}\label{component_8h_a1092fc1b1a8b8c021bc8e9dca328cf6c}} 
+\index{component.\+h@{component.\+h}!component\+\_\+pool\+\_\+set\+\_\+slot@{component\+\_\+pool\+\_\+set\+\_\+slot}}
+\index{component\+\_\+pool\+\_\+set\+\_\+slot@{component\+\_\+pool\+\_\+set\+\_\+slot}!component.\+h@{component.\+h}}
+\subsubsection{\texorpdfstring{component\+\_\+pool\+\_\+set\+\_\+slot()}{component\_pool\_set\_slot()}}
+{\footnotesize\ttfamily int component\+\_\+pool\+\_\+set\+\_\+slot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} $\ast$}]{meta\+\_\+component\+\_\+pool,  }\item[{int}]{index,  }\item[{int}]{state }\end{DoxyParamCaption})}
+
+
+
+Set slot state in meta component to be vacant or free. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em meta\+\_\+component\+\_\+pool} & Meta of the component pool \\
+\hline
+{\em index} & Index of the slot \\
+\hline
+{\em state} & Desired state of the slot \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Error codes\+: 0 is okay, -\/1 is index out of bounds 
+\end{DoxyReturn}
+\mbox{\Hypertarget{component_8h_af64e2220dd5596ce4f119c7887eac5c0}\label{component_8h_af64e2220dd5596ce4f119c7887eac5c0}} 
+\index{component.\+h@{component.\+h}!component\+\_\+remove\+\_\+from\+\_\+entity\+\_\+\+ID@{component\+\_\+remove\+\_\+from\+\_\+entity\+\_\+\+ID}}
+\index{component\+\_\+remove\+\_\+from\+\_\+entity\+\_\+\+ID@{component\+\_\+remove\+\_\+from\+\_\+entity\+\_\+\+ID}!component.\+h@{component.\+h}}
+\subsubsection{\texorpdfstring{component\+\_\+remove\+\_\+from\+\_\+entity\+\_\+\+I\+D()}{component\_remove\_from\_entity\_ID()}}
+{\footnotesize\ttfamily int component\+\_\+remove\+\_\+from\+\_\+entity\+\_\+\+ID (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$}]{entity\+\_\+pool,  }\item[{int}]{guid,  }\item[{\mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} $\ast$}]{meta\+\_\+component\+\_\+pool }\end{DoxyParamCaption})}
+
+
+
+Remove a single component from the specified entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity\+\_\+pool} & \\
+\hline
+{\em guid} & \\
+\hline
+{\em meta\+\_\+component\+\_\+pool} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Error codes\+: 0 is okay, -\/1 means could not find entity-\/component in pool. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{component_8h_af64e2220dd5596ce4f119c7887eac5c0_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{component_8h_a46ad35b10ce23dc588b43f20fa5be2c2}\label{component_8h_a46ad35b10ce23dc588b43f20fa5be2c2}} 
+\index{component.\+h@{component.\+h}!component\+\_\+remove\+\_\+from\+\_\+entity\+\_\+index@{component\+\_\+remove\+\_\+from\+\_\+entity\+\_\+index}}
+\index{component\+\_\+remove\+\_\+from\+\_\+entity\+\_\+index@{component\+\_\+remove\+\_\+from\+\_\+entity\+\_\+index}!component.\+h@{component.\+h}}
+\subsubsection{\texorpdfstring{component\+\_\+remove\+\_\+from\+\_\+entity\+\_\+index()}{component\_remove\_from\_entity\_index()}}
+{\footnotesize\ttfamily int component\+\_\+remove\+\_\+from\+\_\+entity\+\_\+index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$}]{entity\+\_\+pool,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Remove the row of the given index in the component-\/entity pool. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity\+\_\+pool} & \\
+\hline
+{\em index} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Error codes\+: 0 is okay, -\/1 is index out of bounds 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{component_8h_a46ad35b10ce23dc588b43f20fa5be2c2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{component_8h_a46ad35b10ce23dc588b43f20fa5be2c2_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{component_8h_a67e67b5444435172378a5e24701a02e7}\label{component_8h_a67e67b5444435172378a5e24701a02e7}} 
+\index{component.\+h@{component.\+h}!entity\+\_\+get\+\_\+components@{entity\+\_\+get\+\_\+components}}
+\index{entity\+\_\+get\+\_\+components@{entity\+\_\+get\+\_\+components}!component.\+h@{component.\+h}}
+\subsubsection{\texorpdfstring{entity\+\_\+get\+\_\+components()}{entity\_get\_components()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}}$\ast$ entity\+\_\+get\+\_\+components (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$}]{entity\+\_\+pool,  }\item[{int}]{guid,  }\item[{int}]{max\+\_\+query\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Retrieve upto max\+\_\+query\+\_\+size components linked to the entity in an \mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity\+\_\+pool} & \\
+\hline
+{\em guid} & \\
+\hline
+{\em max\+\_\+query\+\_\+size} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Entity\+Pool$\ast$ 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{component_8h_a67e67b5444435172378a5e24701a02e7_cgraph}
+\end{center}
+\end{figure}

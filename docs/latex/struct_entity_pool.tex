@@ -23,11 +23,11 @@ Collaboration diagram for Entity\+Pool\+:\nopagebreak
 \item 
 int \mbox{\hyperlink{struct_entity_pool_a439227feff9d7f55384e8780cfc2eb82}{size}}
 \item 
-int $\ast$ \mbox{\hyperlink{struct_entity_pool_a662c49cdd0bdc65d6ce8380c45290bca}{guid}}
+int $\ast$ \mbox{\hyperlink{struct_entity_pool_a7ce754a177a158c41e7eae14122a3603}{guid}}
 \item 
-\mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} $\ast$$\ast$ \mbox{\hyperlink{struct_entity_pool_ad75884ed3133e339a80f0eb00e0bd974}{component\+\_\+pool}}
+\mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} $\ast$$\ast$ \mbox{\hyperlink{struct_entity_pool_a9eecab6811f2cbb7343d9638605cc74d}{component\+\_\+pool}}
 \item 
-int $\ast$ \mbox{\hyperlink{struct_entity_pool_ac5c84e33e66445aa6755a43a7b70ca72}{component\+\_\+index}}
+int $\ast$ \mbox{\hyperlink{struct_entity_pool_a2de99c265dcc7ac0f0fa20efeec9516f}{component\+\_\+index}}
 \item 
 int \mbox{\hyperlink{struct_entity_pool_aefadcdd88d2e6364fd584f35c374d324}{last\+G\+U\+ID}}
 \end{DoxyCompactItemize}
@@ -37,23 +37,23 @@ int \mbox{\hyperlink{struct_entity_pool_aefadcdd88d2e6364fd584f35c374d324}{last\
 The pool that holds the entities and component relationships. 
 
 \subsection{Field Documentation}
-\mbox{\Hypertarget{struct_entity_pool_ac5c84e33e66445aa6755a43a7b70ca72}\label{struct_entity_pool_ac5c84e33e66445aa6755a43a7b70ca72}} 
+\mbox{\Hypertarget{struct_entity_pool_a2de99c265dcc7ac0f0fa20efeec9516f}\label{struct_entity_pool_a2de99c265dcc7ac0f0fa20efeec9516f}} 
 \index{Entity\+Pool@{Entity\+Pool}!component\+\_\+index@{component\+\_\+index}}
 \index{component\+\_\+index@{component\+\_\+index}!Entity\+Pool@{Entity\+Pool}}
 \subsubsection{\texorpdfstring{component\+\_\+index}{component\_index}}
-{\footnotesize\ttfamily int$\ast$ component\+\_\+index}
+{\footnotesize\ttfamily int $\ast$ component\+\_\+index}
 
-Index in the component pool specified in {\ttfamily component\+\_\+pool} that gives the value for this entity. \mbox{\Hypertarget{struct_entity_pool_ad75884ed3133e339a80f0eb00e0bd974}\label{struct_entity_pool_ad75884ed3133e339a80f0eb00e0bd974}} 
+Index in the component pool specified in {\ttfamily component\+\_\+pool} that gives the value for this entity. \mbox{\Hypertarget{struct_entity_pool_a9eecab6811f2cbb7343d9638605cc74d}\label{struct_entity_pool_a9eecab6811f2cbb7343d9638605cc74d}} 
 \index{Entity\+Pool@{Entity\+Pool}!component\+\_\+pool@{component\+\_\+pool}}
 \index{component\+\_\+pool@{component\+\_\+pool}!Entity\+Pool@{Entity\+Pool}}
 \subsubsection{\texorpdfstring{component\+\_\+pool}{component\_pool}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}}$\ast$$\ast$ component\+\_\+pool}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} $\ast$$\ast$ component\+\_\+pool}
 
-List of pointers to the relevant component pool \mbox{\Hypertarget{struct_entity_pool_a662c49cdd0bdc65d6ce8380c45290bca}\label{struct_entity_pool_a662c49cdd0bdc65d6ce8380c45290bca}} 
+List of pointers to the relevant component pool \mbox{\Hypertarget{struct_entity_pool_a7ce754a177a158c41e7eae14122a3603}\label{struct_entity_pool_a7ce754a177a158c41e7eae14122a3603}} 
 \index{Entity\+Pool@{Entity\+Pool}!guid@{guid}}
 \index{guid@{guid}!Entity\+Pool@{Entity\+Pool}}
 \subsubsection{\texorpdfstring{guid}{guid}}
-{\footnotesize\ttfamily int$\ast$ guid}
+{\footnotesize\ttfamily int $\ast$ guid}
 
 Globally Unique I\+Dentifier of an identity. {\ttfamily guid\mbox{[}i\mbox{]}} represents the i-\/th entity. \mbox{\Hypertarget{struct_entity_pool_aefadcdd88d2e6364fd584f35c374d324}\label{struct_entity_pool_aefadcdd88d2e6364fd584f35c374d324}} 
 \index{Entity\+Pool@{Entity\+Pool}!last\+G\+U\+ID@{last\+G\+U\+ID}}
@@ -69,6 +69,7 @@ Last G\+U\+ID given to an entity in this list \mbox{\Hypertarget{struct_entity_p
 
 Amount of rows that the pool will be able to hold 
 
-The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{des_8h}{des.\+h}}\end{DoxyCompactItemize}
+/home/drvanon/\+Documents/scripts/\+D\+E\+S/examples/velocity/include/\mbox{\hyperlink{examples_2velocity_2include_2des_8h}{des.\+h}}\item 
+/home/drvanon/\+Documents/scripts/\+D\+E\+S/include/\mbox{\hyperlink{entity_8h}{entity.\+h}}\end{DoxyCompactItemize}

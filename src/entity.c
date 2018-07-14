@@ -1,7 +1,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "entity.h"
+#include "des.h"
 
 EntityPool
 *entity_pool_create(int size)
@@ -12,7 +12,7 @@ EntityPool
     entity_pool->component_pool = malloc(size*sizeof(void *));
     entity_pool->component_index = malloc(size*sizeof(int));
 
-    if (entity_pool->guid == NULL | entity_pool->component_pool == NULL | entity_pool->component_index == NULL) {
+    if ( (entity_pool->guid == NULL) || (entity_pool->component_pool == NULL)  || (entity_pool->component_index == NULL) ) {
         entity_pool_destroy(entity_pool);
     }
 

@@ -35,7 +35,7 @@ main()
         int guid = entity_create(entity_pool);
         int position_index = component_add_to_entity_ID(entity_pool, guid, &position_meta_component);
         int velocity_index = component_add_to_entity_ID(entity_pool, guid, &velocity_meta_component);
-        if (position_index == -1 | velocity_index == -1){
+        if ( (position_index == -1) | (velocity_index == -1) ){
             printf("Got some internal error\n");
         }
 

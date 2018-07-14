@@ -1,0 +1,191 @@
+\hypertarget{entity_8h}{}\section{/home/drvanon/\+Documents/scripts/\+D\+E\+S/include/entity.h File Reference}
+\label{entity_8h}\index{/home/drvanon/\+Documents/scripts/\+D\+E\+S/include/entity.\+h@{/home/drvanon/\+Documents/scripts/\+D\+E\+S/include/entity.\+h}}
+{\ttfamily \#include \char`\"{}des\+\_\+internal.\+h\char`\"{}}\newline
+Include dependency graph for entity.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{entity_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{entity_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}}
+\begin{DoxyCompactList}\small\item\em Struct that creates a layer of abstraction between D\+ES and the user\textquotesingle{}s component pools. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}}
+\begin{DoxyCompactList}\small\item\em The pool that holds the entities and component relationships. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}} \mbox{\hyperlink{entity_8h_a0a09b6ff207d87cced8d3f986a50a101}{Meta\+Component\+Pool}}
+\begin{DoxyCompactList}\small\item\em Struct that creates a layer of abstraction between D\+ES and the user\textquotesingle{}s component pools. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} \mbox{\hyperlink{entity_8h_a629511a19dc302aaada724794387569d}{Entity\+Pool}}
+\begin{DoxyCompactList}\small\item\em The pool that holds the entities and component relationships. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$ \mbox{\hyperlink{entity_8h_a44b8855c1b56396b8faedcd389fe4546}{entity\+\_\+pool\+\_\+create}} (int size)
+\begin{DoxyCompactList}\small\item\em Create \mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} and malloc it\textquotesingle{}s component with the size provided, returns N\+U\+LL if insufficient R\+AM. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{entity_8h_a3e377867fe9b332352eb47cdf9dc1a4c}{entity\+\_\+pool\+\_\+destroy}} (\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$entity\+\_\+pool)
+\begin{DoxyCompactList}\small\item\em Free all memory allocated for the \mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{entity_8h_a3955b16f45429c7ea74f275dac36493d}{entity\+\_\+pool\+\_\+find\+\_\+empty\+\_\+row}} (\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$entity\+\_\+pool)
+\begin{DoxyCompactList}\small\item\em Find the index first empty row in the provided \mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{entity_8h_ae84c376a8fb9ccf53cd54e0736e76eb2}{entity\+\_\+create}} (\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$entity\+\_\+pool)
+\begin{DoxyCompactList}\small\item\em Retrieve a new guid for an entity and register the change. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{entity_8h_a7fa6d71c51a14d7607b66722a1f17427}{entity\+\_\+remove}} (\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$entity\+\_\+pool, int guid)
+\begin{DoxyCompactList}\small\item\em Remove all data on the entity in the provided \mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{entity_8h_a629511a19dc302aaada724794387569d}\label{entity_8h_a629511a19dc302aaada724794387569d}} 
+\index{entity.\+h@{entity.\+h}!Entity\+Pool@{Entity\+Pool}}
+\index{Entity\+Pool@{Entity\+Pool}!entity.\+h@{entity.\+h}}
+\subsubsection{\texorpdfstring{Entity\+Pool}{EntityPool}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}}  \mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}}}
+
+
+
+The pool that holds the entities and component relationships. 
+
+\mbox{\Hypertarget{entity_8h_a0a09b6ff207d87cced8d3f986a50a101}\label{entity_8h_a0a09b6ff207d87cced8d3f986a50a101}} 
+\index{entity.\+h@{entity.\+h}!Meta\+Component\+Pool@{Meta\+Component\+Pool}}
+\index{Meta\+Component\+Pool@{Meta\+Component\+Pool}!entity.\+h@{entity.\+h}}
+\subsubsection{\texorpdfstring{Meta\+Component\+Pool}{MetaComponentPool}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}}  \mbox{\hyperlink{struct_meta_component_pool}{Meta\+Component\+Pool}}}
+
+
+
+Struct that creates a layer of abstraction between D\+ES and the user\textquotesingle{}s component pools. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{entity_8h_ae84c376a8fb9ccf53cd54e0736e76eb2}\label{entity_8h_ae84c376a8fb9ccf53cd54e0736e76eb2}} 
+\index{entity.\+h@{entity.\+h}!entity\+\_\+create@{entity\+\_\+create}}
+\index{entity\+\_\+create@{entity\+\_\+create}!entity.\+h@{entity.\+h}}
+\subsubsection{\texorpdfstring{entity\+\_\+create()}{entity\_create()}}
+{\footnotesize\ttfamily int entity\+\_\+create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$}]{entity\+\_\+pool }\end{DoxyParamCaption})}
+
+
+
+Retrieve a new guid for an entity and register the change. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity\+\_\+pool} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{entity_8h_ae84c376a8fb9ccf53cd54e0736e76eb2_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{entity_8h_a44b8855c1b56396b8faedcd389fe4546}\label{entity_8h_a44b8855c1b56396b8faedcd389fe4546}} 
+\index{entity.\+h@{entity.\+h}!entity\+\_\+pool\+\_\+create@{entity\+\_\+pool\+\_\+create}}
+\index{entity\+\_\+pool\+\_\+create@{entity\+\_\+pool\+\_\+create}!entity.\+h@{entity.\+h}}
+\subsubsection{\texorpdfstring{entity\+\_\+pool\+\_\+create()}{entity\_pool\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}}$\ast$ entity\+\_\+pool\+\_\+create (\begin{DoxyParamCaption}\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Create \mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} and malloc it\textquotesingle{}s component with the size provided, returns N\+U\+LL if insufficient R\+AM. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Entity\+Pool$\ast$ 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{entity_8h_a44b8855c1b56396b8faedcd389fe4546_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{entity_8h_a3e377867fe9b332352eb47cdf9dc1a4c}\label{entity_8h_a3e377867fe9b332352eb47cdf9dc1a4c}} 
+\index{entity.\+h@{entity.\+h}!entity\+\_\+pool\+\_\+destroy@{entity\+\_\+pool\+\_\+destroy}}
+\index{entity\+\_\+pool\+\_\+destroy@{entity\+\_\+pool\+\_\+destroy}!entity.\+h@{entity.\+h}}
+\subsubsection{\texorpdfstring{entity\+\_\+pool\+\_\+destroy()}{entity\_pool\_destroy()}}
+{\footnotesize\ttfamily void entity\+\_\+pool\+\_\+destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$}]{entity\+\_\+pool }\end{DoxyParamCaption})}
+
+
+
+Free all memory allocated for the \mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity\+\_\+pool} & \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{entity_8h_a3e377867fe9b332352eb47cdf9dc1a4c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{entity_8h_a3955b16f45429c7ea74f275dac36493d}\label{entity_8h_a3955b16f45429c7ea74f275dac36493d}} 
+\index{entity.\+h@{entity.\+h}!entity\+\_\+pool\+\_\+find\+\_\+empty\+\_\+row@{entity\+\_\+pool\+\_\+find\+\_\+empty\+\_\+row}}
+\index{entity\+\_\+pool\+\_\+find\+\_\+empty\+\_\+row@{entity\+\_\+pool\+\_\+find\+\_\+empty\+\_\+row}!entity.\+h@{entity.\+h}}
+\subsubsection{\texorpdfstring{entity\+\_\+pool\+\_\+find\+\_\+empty\+\_\+row()}{entity\_pool\_find\_empty\_row()}}
+{\footnotesize\ttfamily int entity\+\_\+pool\+\_\+find\+\_\+empty\+\_\+row (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$}]{entity\+\_\+pool }\end{DoxyParamCaption})}
+
+
+
+Find the index first empty row in the provided \mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity\+\_\+pool} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{entity_8h_a3955b16f45429c7ea74f275dac36493d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{entity_8h_a7fa6d71c51a14d7607b66722a1f17427}\label{entity_8h_a7fa6d71c51a14d7607b66722a1f17427}} 
+\index{entity.\+h@{entity.\+h}!entity\+\_\+remove@{entity\+\_\+remove}}
+\index{entity\+\_\+remove@{entity\+\_\+remove}!entity.\+h@{entity.\+h}}
+\subsubsection{\texorpdfstring{entity\+\_\+remove()}{entity\_remove()}}
+{\footnotesize\ttfamily void entity\+\_\+remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}} $\ast$}]{entity\+\_\+pool,  }\item[{int}]{guid }\end{DoxyParamCaption})}
+
+
+
+Remove all data on the entity in the provided \mbox{\hyperlink{struct_entity_pool}{Entity\+Pool}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity\+\_\+pool} & \\
+\hline
+{\em guid} & \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{entity_8h_a7fa6d71c51a14d7607b66722a1f17427_cgraph}
+\end{center}
+\end{figure}

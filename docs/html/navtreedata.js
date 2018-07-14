@@ -24,7 +24,7 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "DES", "index.html", [
-    [ "DES - Dorstijn Entity System", "md__r_e_a_d_m_e.html", null ],
+    [ "DES - Dorstijn Entity System", "md__home_drvanon__documents_scripts__d_e_s__r_e_a_d_m_e.html", null ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
