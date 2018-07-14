@@ -1,4 +1,4 @@
-#include "des.h"
+#include "entity.h"
 #include "assemblage.h"
 
 #ifndef ASSEMBLAGE_POOL_SIZE
@@ -7,7 +7,7 @@
 
 /**
  * @brief Assemblage pool
- * 
+ *
  */
 typedef struct
 AssemblagePool {
