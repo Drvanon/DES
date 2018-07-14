@@ -2,9 +2,9 @@ cc = gcc
 cxx = g++
 dbgflags = 
 optflags = -O2 -DNDEBUG
-cflags = -std=c99 -Wall -pedantic -fwrapv
+cflags = -std=c99 -Wall -pedantic -fwrapv -Iinclude
 clinkflags = 
-cxxflags = -std=c++11 -Wall -pedantic -fwrapv
+cxxflags = -std=c++11 -Wall -pedantic -fwrapv -Iinclude
 cxxlinkflags = 
 rule cc
   command = $cc $xtype -MMD -MF $out.d $optflags $dbgflags $cflags -c $in $

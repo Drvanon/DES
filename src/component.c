@@ -7,7 +7,7 @@ EntityPool
     EntityPool *ret_entity_pool = entity_pool_create(max_query_size);
     int index = 0;
     int ret_index = 0;
-    while (index <= entity_pool->size & index < max_query_size) {
+    while ( (index <= entity_pool->size) & (index < max_query_size) ) {
         if (entity_pool->guid[index] == guid) {
             // Copy the relevant row to the returning entity_pool
             ret_entity_pool->guid[ret_index] = entity_pool->guid[index];

@@ -1,4 +1,5 @@
-includes: []
+includes:
+    - "include"
 search_directories: []
 libraries: []
 
