@@ -2,9 +2,9 @@ cc = gcc
 cxx = g++
 dbgflags = 
 optflags = -O2 -DNDEBUG
-cflags = -std=c99 -Wall -pedantic -fwrapv -Isrc/components -Isrc/systems
+cflags = -std=c99 -Wall -pedantic -fwrapv
 clinkflags = 
-cxxflags = -std=c++11 -Wall -pedantic -fwrapv -Isrc/components -Isrc/systems
+cxxflags = -std=c++11 -Wall -pedantic -fwrapv
 cxxlinkflags = 
 rule cc
   command = $cc $xtype -MMD -MF $out.d $optflags $dbgflags $cflags -c $in $
@@ -18,10 +18,9 @@ rule clink
   command = $cc $optflags $dbgflags $in $clinkflags -o $out
 rule cxxlink
   command = $cxx $optflags $dbgflags $in $cxxlinkflags -o $out
+rule liblink
+  command = ar rs $out $linkflags $in
 build obj/src/des.o: cc src/des.c
 build obj/src/assemblage.o: cc src/assemblage.c
-build obj/src/main.o: cc src/main.c
-build obj/src/systems/system_velocity.o: cc src/systems/system_velocity.c
-build bin/des: clink obj/src/des.o obj/src/assemblage.o obj/src/main.o $
-    obj/src/systems/system_velocity.o
-default bin/des
+build lib/libdes.a: liblink obj/src/des.o obj/src/assemblage.o
+default lib/libdes.a

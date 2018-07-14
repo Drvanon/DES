@@ -1,0 +1,8 @@
+includes:
+    - "include/"
+    - "src/components/"
+    - "src/systems/"
+libraries:
+    - "des"
+search_directories:
+    - "../../lib/"

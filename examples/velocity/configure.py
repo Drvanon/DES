@@ -39,7 +39,7 @@ def build_files(n, args):
             objects.append(obj)
 
     if args["-l"]:
-        path_name = "lib/lib" + args["-l"] + ".a"
+        path_name = "bin/lib" + args["-l"] + ".a"
         n.build(path_name, "liblink", objects)
         n.default(path_name)
     else:
@@ -66,22 +66,15 @@ def build_rules(n, args, conf):
     search_directories = [" -L" + L for L in conf["search_directories"]]
     libraries =  [" -l" + l for l in conf["libraries"]]
 
-    libflags = ""
-    libflags += "".join(defines)
-    libflags += "".join(includes)
-
     cflags = "-std=c99 -Wall -pedantic -fwrapv"
     cflags += "".join(defines)
     cflags += "".join(includes)
-
     clinkflags = ""
     clinkflags += "".join(search_directories)
     clinkflags += "".join(libraries)
-
     cxxflags = "-std=c++11 -Wall -pedantic -fwrapv"
     cxxflags += "".join(defines)
     cxxflags += "".join(includes)
-
     cxxlinkflags = ""
     cxxlinkflags += "".join(search_directories)
     cxxlinkflags += "".join(libraries)
@@ -102,7 +95,7 @@ def build_rules(n, args, conf):
     n.rule("clink", "$cc $optflags $dbgflags $in $clinkflags -o $out")
     n.rule("cxxlink", "$cxx $optflags $dbgflags $in $cxxlinkflags -o $out")
 
-    n.rule("liblink", "ar rs $out $linkflags $in")
+    n.rule("liblink", "ar rs $out $cflags $in")
 
 
 # Everything below this line is dependency boilerplate.

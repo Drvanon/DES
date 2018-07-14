@@ -1,0 +1,28 @@
+cc = gcc
+cxx = g++
+dbgflags = 
+optflags = -O2 -DNDEBUG
+cflags = -std=c99 -Wall -pedantic -fwrapv -Iinclude/ -Isrc/components/ $
+    -Isrc/systems/
+clinkflags =  -L../../lib/ -ldes
+cxxflags = -std=c++11 -Wall -pedantic -fwrapv -Iinclude/ -Isrc/components/ $
+    -Isrc/systems/
+cxxlinkflags =  -L../../lib/ -ldes
+rule cc
+  command = $cc $xtype -MMD -MF $out.d $optflags $dbgflags $cflags -c $in $
+      -o $out
+  depfile = $out.d
+rule cxx
+  command = $cxx $xtype -MMD -MF $out.d $optflags $dbgflags $cxxflags -c $
+      $in -o $out
+  depfile = $out.d
+rule clink
+  command = $cc $optflags $dbgflags $in $clinkflags -o $out
+rule cxxlink
+  command = $cxx $optflags $dbgflags $in $cxxlinkflags -o $out
+rule liblink
+  command = ar rs $out $cflags $in
+build obj/src/main.o: cc src/main.c
+build obj/src/systems/system_velocity.o: cc src/systems/system_velocity.c
+build bin/main: clink obj/src/main.o obj/src/systems/system_velocity.o
+default bin/main

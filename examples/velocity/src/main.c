@@ -68,6 +68,6 @@ main()
     free(position_component_pool.y_position);
     free(velocity_component_pool.x_velocity);
     free(velocity_component_pool.y_velocity);
-    
+
     return 0;
 }
