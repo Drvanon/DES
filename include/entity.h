@@ -1,8 +1,11 @@
+#ifndef ENTITY_H
+#define ENTITY_H
+
 #include "des_internal.h"
 
 /**
  * @brief Struct that creates a layer of abstraction between DES and the user's component pools.
- * 
+ *
  */
 typedef struct
 MetaComponentPool
@@ -18,7 +21,7 @@ MetaComponentPool
 
 /**
  * @brief The pool that holds the entities and component relationships
- * 
+ *
  */
 typedef struct
 EntityPool
@@ -75,3 +78,4 @@ int entity_create(EntityPool *entity_pool);
  */
 void entity_remove(EntityPool *entity_pool, int guid);
 
+#endif // ENTITY_H
