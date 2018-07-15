@@ -7,13 +7,15 @@ EntityPool
 *entity_pool_create(int size)
 {
     EntityPool *entity_pool = malloc(sizeof(EntityPool));
+
     if (entity_pool == NULL) {
     	return NULL;
     }
+
     entity_pool->size = size;
-    entity_pool->guid = calloc(size, sizeof(entity_pool->guid));
-    entity_pool->component_pool = malloc(size*sizeof(entity_pool->component_pool));
-    entity_pool->component_index = malloc(size*sizeof(entity_pool->component_index));
+    entity_pool->guid = calloc(size, sizeof(*entity_pool->guid));
+    entity_pool->component_pool = malloc(size*sizeof(*entity_pool->component_pool));
+    entity_pool->component_index = malloc(size*sizeof(*entity_pool->component_index));
 
     if ( (entity_pool->guid == NULL) || (entity_pool->component_pool == NULL)  || (entity_pool->component_index == NULL) ) {
         entity_pool_destroy(entity_pool);
