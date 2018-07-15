@@ -103,6 +103,8 @@ int component_pool_get_open_slot(MetaComponentPool *meta_component_pool);
  * @brief Find the state of a slot in a component pool
  *
  * This function will tell the user if the slot is in vacant or not.
+ * vacant: 0
+ * occupied: 1
  *
  * @param meta_component_pool
  * @param index
@@ -111,7 +113,7 @@ int component_pool_get_open_slot(MetaComponentPool *meta_component_pool);
 int component_pool_get_slot(MetaComponentPool *meta_component_pool, int index);
 
 /**
- * @brief Set slot state in meta component to be vacant or free
+ * @brief Set slot state in meta component to be vacant (0) or occupied (1).
  *
  * @param meta_component_pool Meta of the component pool
  * @param index Index of the slot
