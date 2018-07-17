@@ -5,6 +5,11 @@ EntityPool
 *entity_get_components(EntityPool *entity_pool, int guid, int max_query_size)
 {
     EntityPool *ret_entity_pool = entity_pool_create(max_query_size);
+
+    if (entity_pool == NULL) {
+        return ret_entity_pool;
+    }
+
     int index = 0;
     int ret_index = 0;
     while ( (index <= entity_pool->size) & (index < max_query_size) ) {

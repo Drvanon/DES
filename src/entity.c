@@ -9,7 +9,7 @@ EntityPool
     EntityPool *entity_pool = malloc(sizeof(EntityPool));
 
     if (entity_pool == NULL) {
-    	return NULL;
+        return NULL;
     }
 
     entity_pool->size = size;
@@ -39,6 +39,10 @@ entity_pool_destroy(EntityPool *entity_pool)
 int
 entity_pool_find_empty_row(EntityPool *entity_pool)
 {
+    if (entity_pool == NULL) {
+        return -1;
+    }
+
     int index = 0;
     while (entity_pool->guid[index] && !(index >= entity_pool->size)) {
         index++;
@@ -54,6 +58,10 @@ entity_pool_find_empty_row(EntityPool *entity_pool)
 int
 entity_create(EntityPool *entity_pool)
 {
+    if (entity_pool == NULL) {
+        return -1;
+    }
+
     int index = entity_pool_find_empty_row(entity_pool);
     if (index == -1) {
         return -1;
@@ -68,6 +76,10 @@ entity_create(EntityPool *entity_pool)
 int
 component_add_to_entity_ID(EntityPool *entity_pool, int guid, MetaComponentPool *meta_component_pool)
 {
+    if (entity_pool == NULL) {
+        return -1;
+    }
+
     int index = entity_pool_find_empty_row(entity_pool);
     int component_index = component_add_to_entity_index(entity_pool, index, guid, meta_component_pool);
 
@@ -77,6 +89,10 @@ component_add_to_entity_ID(EntityPool *entity_pool, int guid, MetaComponentPool 
 int
 component_add_to_entity_index(EntityPool *entity_pool, int index, int guid, MetaComponentPool* meta_component_pool)
 {
+    if (entity_pool == NULL) {
+        return -1;
+    }
+
     int component_index = component_pool_get_open_slot(meta_component_pool);
     if (component_index > -1) {
         component_pool_set_slot(meta_component_pool, component_index, 1);
@@ -92,7 +108,7 @@ component_add_to_entity_index(EntityPool *entity_pool, int index, int guid, Meta
 int
 component_remove_from_entity_index(EntityPool *entity_pool, int index)
 {
-    if (index > entity_pool->size) {
+    if (index > entity_pool->size || entity_pool == NULL) {
         return -1;
     }
     component_pool_set_slot(entity_pool->component_pool[index], entity_pool->component_index[index], 0);
@@ -107,6 +123,10 @@ component_remove_from_entity_index(EntityPool *entity_pool, int index)
 int
 component_remove_from_entity_ID(EntityPool *entity_pool, int guid, MetaComponentPool *meta_component_pool)
 {
+    if (entity_pool == NULL) {
+        return -1;
+    }
+
     int index = 0;
     while (!(guid == entity_pool->guid[index]) |
            !(entity_pool->component_pool[index] == meta_component_pool)) {
@@ -120,6 +140,10 @@ component_remove_from_entity_ID(EntityPool *entity_pool, int guid, MetaComponent
 void
 entity_remove(EntityPool *entity_pool, int guid)
 {
+    if (entity_pool == NULL) {
+        return;
+    }
+
     int index = 0;
     while (index <= entity_pool->size) {
         if (entity_pool->guid[index] == guid) {

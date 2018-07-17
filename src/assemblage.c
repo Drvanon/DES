@@ -36,7 +36,7 @@ assemblage_create() {
     if (last_assemblage > ASSEMBLAGE_POOL_SIZE) {
         return 1;
     }
-    
+
     last_assemblage++;
 
     return last_assemblage;
