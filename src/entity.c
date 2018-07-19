@@ -5,8 +5,8 @@
 
 #include "des.h"
 
-EntityPool
-*entity_pool_create(int size)
+EntityPool*
+entity_pool_create(int size)
 {
     EntityPool *entity_pool = malloc(sizeof(EntityPool));
 
@@ -20,7 +20,7 @@ EntityPool
     entity_pool->component_index = malloc(size*sizeof(*entity_pool->component_index));
 
     if ( (entity_pool->guid == NULL) || (entity_pool->component_pool == NULL)  || (entity_pool->component_index == NULL) ) {
-        entity_pool_destroy(entity_pool);
+        entity_pool_destroy(&entity_pool);
         return NULL;
     }
 
@@ -29,13 +29,14 @@ EntityPool
 
 
 void
-entity_pool_destroy(EntityPool *entity_pool)
+entity_pool_destroy(EntityPool **entity_pool_pointer)
 {
-    free(entity_pool->guid);
-    free(entity_pool->component_pool);
-    free(entity_pool->component_index);
+    //free((*entity_pool_pointer)->guid);
+    //free((*entity_pool_pointer)->component_pool);
+    //free((*entity_pool_pointer)->component_index);
 
-    free(entity_pool);
+    free((*entity_pool_pointer));
+    *entity_pool_pointer = NULL;
 }
 
 int
@@ -64,13 +65,7 @@ entity_create(EntityPool *entity_pool)
         return -1;
     }
 
-    int index = entity_pool_find_empty_row(entity_pool);
-    if (index == -1) {
-        return -1;
-    }
-
     entity_pool->lastGUID++;
-    entity_pool->guid[index] = entity_pool->lastGUID;
 
     return entity_pool->lastGUID;
 }
@@ -169,7 +164,7 @@ void
 append_entity(EntityLinkedList *head, int new_guid)
 {
     EntityLinkedList *tail = head;
-    while (tail) {
+    while (tail->next) {
         tail = tail->next;
     }
 

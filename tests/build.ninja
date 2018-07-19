@@ -1,7 +1,7 @@
 cc = clang
 cxx = g++
 dbgflags = -ggdb
-optflags = -O2
+optflags = 
 cflags = -std=c99 -Wall -pedantic -fwrapv -I../include
 cxxflags = -std=c++11 -Wall -pedantic -fwrapv -I../include
 cxxlinkflags =  -L../lib -ldes

@@ -52,7 +52,7 @@ EntityPool *entity_pool_create(int size);
  *
  * @param entity_pool
  */
-void entity_pool_destroy(EntityPool *entity_pool);
+void entity_pool_destroy(EntityPool **entity_pool);
 
 /**
  * @brief Find the index first empty row in the provided EntityPool.

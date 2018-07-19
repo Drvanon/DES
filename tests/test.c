@@ -49,11 +49,12 @@ int main () {
     // Check that the entity is empty when initialized
     EntityPool *components_of_guid = entity_get_components(entity_pool, guid, 100);
     for (int i=0;i<100;i++) {
-        // assert(components_of_guid->guid[i] == 0);
+        printf("%d, %d\n", i, components_of_guid->guid[i]);
+        assert(components_of_guid->guid[i] == 0);
     }
 
     // Assert that the entity pool is fully destroyed
-    entity_pool_destroy(components_of_guid);
+    entity_pool_destroy(&components_of_guid);
     assert(components_of_guid == NULL);
 
     // Check for a valid component and mask integrity
@@ -107,6 +108,12 @@ int main () {
     first_component_item.marked = false;
     first_component_item.next = &second_component_item;
 
+    printf("\nguid \t| compent_pool \n");
+    for (int i =0;i<entity_pool->size;i++) {
+        printf("%d \t| %p\n", entity_pool->guid[i], (void *)entity_pool->component_pool[i]);
+    }
+
+
     MarkedComponentLinkedList *head;
     for (int i=0;i<search_results->size;i++) {
         head = &first_component_item;
@@ -119,7 +126,7 @@ int main () {
             head = head->next;
         }
     }
-    entity_pool_destroy(search_results);
+    entity_pool_destroy(&search_results);
 
     head = &first_component_item;
     while(head) {
@@ -128,11 +135,15 @@ int main () {
     }
 
     int second_guid = assemblage_create_entity(entity_pool, second_assemblage);
+    int third_guid = assemblage_create_entity(entity_pool, third_assemblage);
 
     printf("\nguid \t| compent_pool \n");
     for (int i =0;i<entity_pool->size;i++) {
         printf("%d \t| %p\n", entity_pool->guid[i], (void *)entity_pool->component_pool[i]);
     }
+
+    MetaComponentPool *components[] = {&meta_test_pool, &meta_test2_pool};
+    int* guids =  components_get_all_entities(entity_pool, components, 2);
 
     // Clean up
     free(test_component_pool.member1);
@@ -142,10 +153,10 @@ int main () {
     free(test3_component_pool.member1);
     free(test3_component_pool.member2);
 
-    entity_pool_destroy(components_of_guid);
+    entity_pool_destroy(&components_of_guid);
     assert(components_of_guid == NULL);
 
-    entity_pool_destroy(entity_pool);
+    entity_pool_destroy(&entity_pool);
 
     printf("All tests ran successfully\n");
 

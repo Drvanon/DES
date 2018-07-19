@@ -20,7 +20,7 @@ int
 assemblage_row_find_empty()
 {
     int index = 0;
-    while ((index < ASSEMBLAGE_POOL_SIZE) && !ASSEMBLAGE_POOL.assemblage_id[index]) {
+    while ((index < ASSEMBLAGE_POOL_SIZE) && ASSEMBLAGE_POOL.assemblage_id[index]) {
         index++;
     }
     if (index >= ASSEMBLAGE_POOL_SIZE) {
