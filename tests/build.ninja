@@ -17,6 +17,6 @@ rule cxxlink
   command = $cxx $optflags $dbgflags $in $cxxlinkflags -o $out
 rule liblink
   command = ar rs $out $libflags $in
-build obj\.\test.o: cc .\test.c
-build test.exe: cxxlink obj\.\test.o
-default test.exe
+build obj/./test.o: cc ./test.c
+build test: cxxlink obj/./test.o
+default test

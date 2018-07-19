@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 #include "des.h"
 
@@ -223,7 +224,7 @@ components_get_all_entities(EntityPool *entity_pool, MetaComponentPool **compone
     for (int i=0;i<amount_of_components;i++) {
         EntityLinkedList *head = entities_components[i];
         int current_size = 0;
-        while (head && current_size >= smallest_entity_list) {
+        while (head && current_size <= smallest_entity_list) {
             head = head->next;
             current_size++;
         }
@@ -234,7 +235,7 @@ components_get_all_entities(EntityPool *entity_pool, MetaComponentPool **compone
         }
     }
 
-    int* ret_guids = malloc(smallest_entity_list * sizeof(int));
+    int* ret_guids = calloc(smallest_entity_list, sizeof(int));
     int current_guid_index = 0;
 
     // Find the union of all the lists
@@ -271,6 +272,12 @@ components_get_all_entities(EntityPool *entity_pool, MetaComponentPool **compone
     for (int i=0;i<amount_of_components;i++) {
         remove_EntityLinkedList(entities_components[i]);
     }
+
+    // This trick allows me to send the length of the list
+    // as the first value. We can do this because -1 is
+    // always the first item of the list.
+    printf("%d\n", smallest_entity_list);
+    ret_guids[0] = smallest_entity_list;
 
     return ret_guids;
 }

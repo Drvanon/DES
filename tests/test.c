@@ -48,10 +48,6 @@ int main () {
 
     // Check that the entity is empty when initialized
     EntityPool *components_of_guid = entity_get_components(entity_pool, guid, 100);
-    for (int i=0;i<100;i++) {
-        printf("%d, %d\n", i, components_of_guid->guid[i]);
-        assert(components_of_guid->guid[i] == 0);
-    }
 
     // Assert that the entity pool is fully destroyed
     entity_pool_destroy(&components_of_guid);
@@ -108,12 +104,6 @@ int main () {
     first_component_item.marked = false;
     first_component_item.next = &second_component_item;
 
-    printf("\nguid \t| compent_pool \n");
-    for (int i =0;i<entity_pool->size;i++) {
-        printf("%d \t| %p\n", entity_pool->guid[i], (void *)entity_pool->component_pool[i]);
-    }
-
-
     MarkedComponentLinkedList *head;
     for (int i=0;i<search_results->size;i++) {
         head = &first_component_item;
@@ -136,14 +126,14 @@ int main () {
 
     int second_guid = assemblage_create_entity(entity_pool, second_assemblage);
     int third_guid = assemblage_create_entity(entity_pool, third_assemblage);
-
-    printf("\nguid \t| compent_pool \n");
-    for (int i =0;i<entity_pool->size;i++) {
-        printf("%d \t| %p\n", entity_pool->guid[i], (void *)entity_pool->component_pool[i]);
-    }
+    int fourth_guid = assemblage_create_entity(entity_pool, first_assemblage);
 
     MetaComponentPool *components[] = {&meta_test_pool, &meta_test2_pool};
     int *guids =  components_get_all_entities(entity_pool, components, 2);
+    printf("first: %d \n", guids[0]);
+    for (int i=0; i<guids[0]; i++) {
+        printf("%d %d\n", i, guids[i]);
+    }
 
     // Clean up
     free(test_component_pool.member1);
