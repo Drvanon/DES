@@ -1,5 +1,4 @@
 includes:
     - "include"
-search_directories: []
-libraries: []
+source: "srca"
 

@@ -10,3 +10,4 @@ dabs -l des
 ## TODOS
 - Make all ECS tables (structs) dynamic memory
 - Add SQL compatibility
+- Add helper functions: assemblage_add_components

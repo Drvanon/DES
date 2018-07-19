@@ -3,7 +3,6 @@ cxx = g++
 dbgflags = 
 optflags = -O2 -DNDEBUG
 cflags = -std=c99 -Wall -pedantic -fwrapv -Iinclude
-clinkflags = 
 cxxflags = -std=c++11 -Wall -pedantic -fwrapv -Iinclude
 cxxlinkflags = 
 rule cc
@@ -14,15 +13,9 @@ rule cxx
   command = $cxx $xtype -MMD -MF $out.d $optflags $dbgflags $cxxflags -c $
       $in -o $out
   depfile = $out.d
-rule clink
-  command = $cc $optflags $dbgflags $in $clinkflags -o $out
 rule cxxlink
   command = $cxx $optflags $dbgflags $in $cxxlinkflags -o $out
 rule liblink
-  command = ar rs $out $linkflags $in
-build obj/src/assemblage.o: cc src/assemblage.c
-build obj/src/entity.o: cc src/entity.c
-build obj/src/component.o: cc src/component.c
-build lib/libdes.a: liblink obj/src/assemblage.o obj/src/entity.o $
-    obj/src/component.o
-default lib/libdes.a
+  command = ar rs $out $libflags $in
+build bin/main: cxxlink
+default bin/main
