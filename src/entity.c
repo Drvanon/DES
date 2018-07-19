@@ -1,5 +1,7 @@
+#include <limits.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "des.h"
 
@@ -154,3 +156,125 @@ entity_remove(EntityPool *entity_pool, int guid)
     }
 }
 
+typedef struct EntityLinkedList EntityLinkedList;
+
+struct
+EntityLinkedList
+{
+    EntityLinkedList *next;
+    int guid;
+};
+
+void
+append_entity(EntityLinkedList *head, int new_guid)
+{
+    EntityLinkedList *tail = head;
+    while (tail) {
+        tail = tail->next;
+    }
+
+    EntityLinkedList *new_list_item = malloc(sizeof *new_list_item);
+    new_list_item->next = NULL;
+    new_list_item->guid = new_guid;
+
+    tail->next = new_list_item;
+}
+
+void
+remove_EntityLinkedList (EntityLinkedList *head) {
+    EntityLinkedList *old_head;
+    while (head) {
+        old_head = head;
+        head = head->next;
+        free(old_head);
+    }
+}
+
+int*
+components_get_all_entities(EntityPool *entity_pool, MetaComponentPool **components, int amount_of_components)
+{
+    // For every component that is required, maintain a linked list
+    // that contains all guids that have that specific component.
+    EntityLinkedList* entities_components[amount_of_components];
+
+    // Initialize the lists to only contain a -1
+    for (int i=0;i<amount_of_components;i++) {
+        EntityLinkedList *head = malloc(sizeof head);
+        head->guid = -1;
+        head->next = NULL;
+        entities_components[i] = head;
+    }
+
+    // Search trough all entities for every matching component
+    // and register it's guid.
+    int guid;
+    MetaComponentPool* component_pool;
+    for (int i=0;i<entity_pool->size;i++) {
+        guid = entity_pool->guid[i];
+        if (guid == 0) {continue;}
+
+        component_pool = entity_pool->component_pool[i];
+        for (int j=0;j<amount_of_components;j++) {
+            if (components[j] == component_pool) {
+                append_entity(entities_components[j], guid);
+            }
+        }
+    }
+
+    // Find the smallest list of entities
+    int smallest_entity_list = INT_MAX;
+    int smallest_component = 0;
+    for (int i=0;i<amount_of_components;i++) {
+        EntityLinkedList *head = entities_components[i];
+        int current_size = 0;
+        while (head && current_size >= smallest_entity_list) {
+            head = head->next;
+            current_size++;
+        }
+
+        if (current_size < smallest_entity_list) {
+            smallest_entity_list = current_size;
+            smallest_component = i;
+        }
+    }
+
+    int* ret_guids = malloc(smallest_entity_list * sizeof(int));
+    int current_guid_index = 0;
+
+    // Find the union of all the lists
+    EntityLinkedList *head = entities_components[smallest_component];
+    while (head) {
+        bool in_union = true;
+
+        for (int i=0;i<amount_of_components && in_union;i++) {
+            // Make sure we are not also going trough the smallest
+            // list, because that is the one we are taking as the
+            // basis for our union.
+            if (i == smallest_component) { continue; }
+
+            bool found = false;
+            EntityLinkedList *subhead = entities_components[i];
+            while (subhead) {
+                if (subhead->guid == head->guid) {
+                    found = true;
+                    break;
+                }
+                subhead = subhead->next;
+            }
+            in_union = found;
+        }
+
+        if (in_union) {
+            ret_guids[current_guid_index] = head->guid;
+            current_guid_index++;
+        }
+
+        head = head->next;
+    }
+
+    for (int i=0;i<amount_of_components;i++) {
+        remove_EntityLinkedList(entities_components[i]);
+    }
+
+    return ret_guids;
+}

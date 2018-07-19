@@ -78,4 +78,18 @@ int entity_create(EntityPool *entity_pool);
  */
 void entity_remove(EntityPool *entity_pool, int guid);
 
+/**
+ * @brief Find all entities related to a list of components
+ *
+ * This function will gather all entities that have atleast one
+ * component of the specified types and take the union of all
+ * these lists.
+ *
+ * @param entity_pool The entity pool in which the search will be executed
+ * @param components A double pointer (pointer to a series of pointers to MetaComponentPools) of the searched components
+ * @param amount_of_components The number of elements in the components list
+ * @return int* A pointer to a list of guids
+ */
+int* components_get_all_entities(EntityPool *entity_pool, MetaComponentPool **components, int amount_of_components);
+
 #endif // ENTITY_H
