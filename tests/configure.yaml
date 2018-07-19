@@ -4,6 +4,6 @@ search_directories:
     - ../lib
 libraries:
     - des
-cc: clang
+# cc: clang
 source: '.'
 build_file: test

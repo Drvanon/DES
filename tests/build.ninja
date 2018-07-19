@@ -1,7 +1,7 @@
-cc = clang
+cc = gcc
 cxx = g++
 dbgflags = -ggdb
-optflags = 
+optflags = -g
 cflags = -std=c99 -Wall -pedantic -fwrapv -I../include
 cxxflags = -std=c++11 -Wall -pedantic -fwrapv -I../include
 cxxlinkflags =  -L../lib -ldes
@@ -17,6 +17,6 @@ rule cxxlink
   command = $cxx $optflags $dbgflags $in $cxxlinkflags -o $out
 rule liblink
   command = ar rs $out $libflags $in
-build obj/./test.o: cc ./test.c
-build test: cxxlink obj/./test.o
-default test
+build obj\.\test.o: cc .\test.c
+build test.exe: cxxlink obj\.\test.o
+default test.exe

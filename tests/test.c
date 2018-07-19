@@ -143,7 +143,7 @@ int main () {
     }
 
     MetaComponentPool *components[] = {&meta_test_pool, &meta_test2_pool};
-    int* guids =  components_get_all_entities(entity_pool, components, 2);
+    int *guids =  components_get_all_entities(entity_pool, components, 2);
 
     // Clean up
     free(test_component_pool.member1);

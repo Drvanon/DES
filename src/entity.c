@@ -16,6 +16,7 @@ entity_pool_create(int size)
 
     entity_pool->size = size;
     entity_pool->guid = calloc(size, sizeof(*entity_pool->guid));
+    entity_pool->lastGUID = 0;
     entity_pool->component_pool = malloc(size*sizeof(*entity_pool->component_pool));
     entity_pool->component_index = malloc(size*sizeof(*entity_pool->component_index));
 
@@ -178,11 +179,11 @@ append_entity(EntityLinkedList *head, int new_guid)
 void
 remove_EntityLinkedList (EntityLinkedList *head) {
     EntityLinkedList *old_head;
-    while (head) {
+    do {
         old_head = head;
         head = head->next;
         free(old_head);
-    }
+    } while (head->next);
 }
 
 int*
@@ -190,11 +191,11 @@ components_get_all_entities(EntityPool *entity_pool, MetaComponentPool **compone
 {
     // For every component that is required, maintain a linked list
     // that contains all guids that have that specific component.
-    EntityLinkedList* entities_components[amount_of_components];
+    EntityLinkedList** entities_components = malloc(amount_of_components * sizeof *entities_components);
 
     // Initialize the lists to only contain a -1
     for (int i=0;i<amount_of_components;i++) {
-        EntityLinkedList *head = malloc(sizeof head);
+        EntityLinkedList *head = malloc(sizeof *head);
         head->guid = -1;
         head->next = NULL;
         entities_components[i] = head;

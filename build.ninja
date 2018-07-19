@@ -17,9 +17,9 @@ rule cxxlink
   command = $cxx $optflags $dbgflags $in $cxxlinkflags -o $out
 rule liblink
   command = ar rs $out $libflags $in
-build obj/src/assemblage.o: cc src/assemblage.c
-build obj/src/entity.o: cc src/entity.c
-build obj/src/component.o: cc src/component.c
-build lib/libdes.a: liblink obj/src/assemblage.o obj/src/entity.o $
-    obj/src/component.o
+build obj\src\assemblage.o: cc src\assemblage.c
+build obj\src\component.o: cc src\component.c
+build obj\src\entity.o: cc src\entity.c
+build lib/libdes.a: liblink obj\src\assemblage.o obj\src\component.o $
+    obj\src\entity.o
 default lib/libdes.a
